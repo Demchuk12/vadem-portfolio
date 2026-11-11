@@ -9,8 +9,8 @@
   background: var(--vd-color-surface-glass); border-block-end: 1px solid var(--vd-color-border); }
 .top__row { display: flex; align-items: center; gap: var(--vd-space-4); min-block-size: 3.5rem; flex-wrap: wrap; padding-block: var(--vd-space-2); }
 .brand { display: inline-flex; align-items: center; gap: var(--vd-space-2); color: inherit; text-decoration: none; font-weight: 700; }
-.brand__mark { display: grid; place-items: center; inline-size: 1.75rem; block-size: 1.75rem; border-radius: var(--vd-radius-md);
-  background: var(--vd-color-action); color: var(--vd-color-on-action); font-family: var(--vd-font-mono); }
+.brand__mark { display: grid; place-items: center; }
+.foot__brand { display: inline-flex; align-items: center; gap: var(--vd-space-2); }
 .nav { display: flex; gap: var(--vd-space-4); margin-inline-start: auto; }
 .nav a { color: var(--vd-color-text-muted); text-decoration: none; font-size: var(--vd-text-sm); }
 .nav a:hover { color: var(--vd-color-text); }

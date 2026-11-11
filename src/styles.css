@@ -22,3 +22,12 @@ html {
     scroll-behavior: auto;
   }
 }
+
+/* Brand mark: pick the variant that contrasts with the active theme. */
+.logo--light { display: none; }
+:root[data-theme='light'] .logo--dark { display: none; }
+:root[data-theme='light'] .logo--light { display: inline; }
+@media (prefers-color-scheme: light) {
+  :root[data-theme='auto'] .logo--dark { display: none; }
+  :root[data-theme='auto'] .logo--light { display: inline; }
+}
