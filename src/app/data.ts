@@ -38,8 +38,8 @@ export const PROFILE = {
   linkedin: 'https://www.linkedin.com/in/vasyl-demchuk-152148255/',
   cv: 'Vasyl_Demchuk_Full_Stack_Engineer_CV.pdf',
   title: {
-    uk: 'Full Stack інженер',
-    en: 'Full Stack Engineer',
+    uk: 'Frontend / Full Stack інженер',
+    en: 'Frontend / Full Stack Engineer',
   } satisfies L10n,
 };
 
