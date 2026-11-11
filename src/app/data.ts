@@ -16,6 +16,8 @@ export interface Job {
 export interface Project {
   id: string;
   name: string;
+  /** Screenshot of the live app, 1280×800, in public/projects. */
+  image: string;
   badge: L10n;
   tagline: L10n;
   description: L10n;
@@ -194,6 +196,7 @@ export const JOBS: Job[] = [
 export const PROJECTS: Project[] = [
   {
     id: 'vadem-ui',
+    image: 'projects/vadem-ui.jpg',
     name: 'Vadem UI',
     badge: { uk: 'Бібліотека · npm', en: 'Library · npm' },
     tagline: { uk: 'Власна Angular UI-бібліотека', en: 'My own Angular UI library' },
@@ -210,6 +213,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'vadem-quiz',
+    image: 'projects/vadem-quiz.jpg',
     name: 'Vadem Quiz',
     badge: { uk: 'Realtime · PWA', en: 'Realtime · PWA' },
     tagline: { uk: 'Живий квіз для друзів', en: 'Live quiz board game' },
@@ -225,6 +229,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'tourist-report',
+    image: 'projects/tourist-report.jpg',
     name: 'Tourist Report',
     badge: { uk: 'SvelteKit · PWA', en: 'SvelteKit · PWA' },
     tagline: { uk: 'Звітність для керівників туристичних груп', en: 'Reporting for tour group leaders' },
@@ -265,6 +270,7 @@ export const COPY = {
     showLess: 'Згорнути',
     projTitle: 'Пет-проєкти',
     projLead: 'Те, що я будую для себе й друзів.',
+    shotAlt: (name: string) => `Скріншот ${name}`,
     eduTitle: 'Освіта і мови',
     edu: 'Тернопільський національний технічний університет імені Івана Пулюя',
     degrees: ['Магістр, Кібербезпека', 'Бакалавр, Інформатика', 'Молодший спеціаліст, Інформатика'],
@@ -305,6 +311,7 @@ export const COPY = {
     showLess: 'Show less',
     projTitle: 'Pet projects',
     projLead: 'Things I build for myself and friends.',
+    shotAlt: (name: string) => `${name} screenshot`,
     eduTitle: 'Education & languages',
     edu: 'Ternopil Ivan Puluj National Technical University',
     degrees: ["Master's, Cyber Security", "Bachelor's, Computer Science", 'Junior Specialist, Computer Science'],

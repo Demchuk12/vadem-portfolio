@@ -126,3 +126,14 @@
   .tabbar__item vd-icon { inline-size: 1.25rem; block-size: 1.25rem; }
   .foot { padding-block-end: calc(var(--vd-space-24) + env(safe-area-inset-bottom)); }
 }
+
+/* Project screenshot: bleeds to the card edges, keeps its ratio so nothing jumps while it loads. */
+.project__shot {
+  display: block; overflow: hidden; aspect-ratio: 16 / 10;
+  margin: calc(var(--vd-card-padding) * -1) calc(var(--vd-card-padding) * -1) var(--vd-space-1);
+  border-start-start-radius: calc(var(--vd-card-radius) - 1px); border-start-end-radius: calc(var(--vd-card-radius) - 1px);
+  border-block-end: 1px solid var(--vd-color-border); background: var(--vd-color-surface-sunken);
+}
+.project__shot img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: top;
+  transition: transform calc(var(--vd-duration-slow) * 2) var(--vd-ease-out); }
+@media (hover: hover) { .project:hover .project__shot img { transform: scale(1.04); } }

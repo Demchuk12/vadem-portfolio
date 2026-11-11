@@ -127,6 +127,9 @@
     <div class="projects">
       @for (p of projects; track p.id; let i = $index) {
         <article vdCard variant="raised" class="project" [pfReveal]="i * 90">
+          <a class="project__shot" [href]="p.links[0].href" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img [src]="p.image" [alt]="t().shotAlt(p.name)" width="1280" height="800" loading="lazy" decoding="async" />
+          </a>
           <header vdCardHeader>
             <h3 vdCardTitle>{{ p.name }}</h3>
             <p vdCardDescription>{{ tx(p.tagline) }}</p>
