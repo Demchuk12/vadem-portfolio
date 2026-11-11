@@ -1,0 +1,185 @@
+<a class="skip" href="#main">{{ t().skip }}</a>
+
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="#top" aria-label="Vasyl Demchuk">
+      <span class="brand__mark" aria-hidden="true">V</span>
+      <span class="brand__name">Vasyl Demchuk</span>
+    </a>
+    <nav class="nav" [attr.aria-label]="'Sections'">
+      <a href="#stack">{{ t().nav.stack }}</a>
+      <a href="#experience">{{ t().nav.experience }}</a>
+      <a href="#projects">{{ t().nav.projects }}</a>
+      <a href="#contact">{{ t().nav.contact }}</a>
+    </nav>
+    <div class="top__controls">
+      <vd-segmented size="sm" [aria-label]="t().theme" [value]="theme()" (valueChange)="setTheme($event)">
+        <vd-segment value="auto" [aria-label]="t().themes.auto"><vd-icon name="monitor" /></vd-segment>
+        <vd-segment value="light" [aria-label]="t().themes.light"><vd-icon name="sun" /></vd-segment>
+        <vd-segment value="dark" [aria-label]="t().themes.dark"><vd-icon name="moon" /></vd-segment>
+      </vd-segmented>
+      <vd-segmented size="sm" [aria-label]="t().lang" [value]="lang()" (valueChange)="setLang($event)">
+        <vd-segment value="uk">UA</vd-segment>
+        <vd-segment value="en">EN</vd-segment>
+      </vd-segmented>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <span vdBadge variant="success" dot>{{ t().hero.eyebrow }}</span>
+    <h1 class="hero__title">
+      Vasyl Demchuk
+      <span class="hero__role">{{ tx(profile.title) }}</span>
+    </h1>
+    <p class="hero__lead">{{ t().hero.lead }}</p>
+    <div class="hero__tags">
+      @for (s of ['.NET', 'Angular', 'TypeScript', 'PostgreSQL', 'SignalR']; track s) {
+        <span vdBadge variant="accent">{{ s }}</span>
+      }
+    </div>
+    <div class="hero__cta">
+      <a vdButton variant="primary" size="lg" [href]="'mailto:' + profile.email">
+        <vd-icon slot="start" name="mail" />{{ t().hero.cta }}
+      </a>
+      <a vdButton size="lg" href="#projects">
+        {{ t().hero.cv }}<vd-icon slot="end" name="arrow-down" />
+      </a>
+      <a vdButton variant="ghost" size="lg" [href]="profile.github" target="_blank" rel="noopener">
+        <vd-icon slot="start" name="git-branch" />GitHub
+      </a>
+    </div>
+
+    <dl class="stats">
+      @for (s of t().stats; track s.label) {
+        <vd-stat class="stats__item" [label]="s.label" [value]="s.value" [caption]="s.caption" />
+      }
+    </dl>
+  </section>
+
+  <section class="sec wrap" id="stack" aria-labelledby="stack-h">
+    <header class="sec__head">
+      <h2 id="stack-h">{{ t().stackTitle }}</h2>
+      <p>{{ t().stackLead }}</p>
+    </header>
+    <vd-tabs variant="pill" [(value)]="stackTab">
+      <div vdTabList [attr.aria-label]="t().stackTitle" class="stack__tabs">
+        @for (g of groups; track g.id) {
+          <button vdTab [value]="g.id">{{ tx(g.label) }}</button>
+        }
+      </div>
+      @for (g of groups; track g.id) {
+        <div vdTabPanel [value]="g.id">
+          <ul class="chips">
+            @for (item of g.items; track item) {
+              <li vdBadge variant="neutral" class="chip">{{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </vd-tabs>
+  </section>
+
+  <section class="sec wrap" id="experience" aria-labelledby="exp-h">
+    <header class="sec__head">
+      <h2 id="exp-h">{{ t().expTitle }}</h2>
+      <p>{{ t().expLead }}</p>
+    </header>
+    <ol vdTimeline [label]="t().expLabel">
+      @for (j of jobs(); track j.company) {
+        <li vdTimelineItem [status]="j.current ? 'success' : 'neutral'" [statusLabel]="j.productText">
+          <time vdTimelineTime [attr.datetime]="j.datetime">{{ j.periodText }}</time>
+          <h3 vdTimelineTitle>{{ j.roleText }} · <span class="co">{{ j.company }}</span></h3>
+          <ul class="points">
+            @for (p of j.points; track p) {
+              <li>{{ p }}</li>
+            }
+          </ul>
+          <ul class="chips chips--tight">
+            @for (s of j.stack; track s) {
+              <li vdBadge variant="accent">{{ s }}</li>
+            }
+          </ul>
+        </li>
+      }
+    </ol>
+  </section>
+
+  <section class="sec wrap" id="projects" aria-labelledby="proj-h">
+    <header class="sec__head">
+      <h2 id="proj-h">{{ t().projTitle }}</h2>
+      <p>{{ t().projLead }}</p>
+    </header>
+    <div class="projects">
+      @for (p of projects; track p.id) {
+        <article vdCard variant="raised" class="project">
+          <header vdCardHeader>
+            <h3 vdCardTitle>{{ p.name }}</h3>
+            <p vdCardDescription>{{ tx(p.tagline) }}</p>
+            <span vdBadge variant="info">{{ tx(p.badge) }}</span>
+          </header>
+          <p class="project__text">{{ tx(p.description) }}</p>
+          <ul class="chips chips--tight">
+            @for (s of p.stack; track s) {
+              <li vdBadge>{{ s }}</li>
+            }
+          </ul>
+          <footer vdCardFooter class="project__links">
+            @for (l of p.links; track l.href) {
+              <a vdButton size="sm" [variant]="l.primary ? 'primary' : 'secondary'" [href]="l.href" target="_blank" rel="noopener">
+                {{ tx(l.label) }}<vd-icon slot="end" name="external-link" />
+              </a>
+            }
+          </footer>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="sec wrap" aria-labelledby="edu-h">
+    <header class="sec__head"><h2 id="edu-h">{{ t().eduTitle }}</h2></header>
+    <div class="edu">
+      <article vdCard>
+        <header vdCardHeader>
+          <h3 vdCardTitle>{{ t().edu }}</h3>
+        </header>
+        <ul class="points">
+          @for (d of t().degrees; track d) {
+            <li>{{ d }}</li>
+          }
+        </ul>
+      </article>
+      <article vdCard>
+        <header vdCardHeader>
+          <h3 vdCardTitle>{{ t().langsTitle }}</h3>
+        </header>
+        <ul class="langs">
+          @for (l of t().langs; track l.name) {
+            <li><strong>{{ l.name }}</strong><span vdBadge>{{ l.level }}</span></li>
+          }
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec wrap contact" id="contact" aria-labelledby="contact-h">
+    <div class="contact__box">
+      <h2 id="contact-h">{{ t().contactTitle }}</h2>
+      <p>{{ t().contactLead }}</p>
+      <div class="hero__cta">
+        <a vdButton variant="primary" size="lg" [href]="'mailto:' + profile.email">
+          <vd-icon slot="start" name="mail" />{{ profile.email }}
+        </a>
+        <a vdButton size="lg" [href]="profile.telegram" target="_blank" rel="noopener">Telegram</a>
+        <a vdButton size="lg" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a vdButton size="lg" [href]="profile.github" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  <span>© {{ year }} Vasyl Demchuk</span>
+  <span>{{ t().builtWith }}</span>
+</footer>
