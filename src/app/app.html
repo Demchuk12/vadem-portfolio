@@ -117,30 +117,45 @@
       <h2 id="proj-h">{{ t().projTitle }}</h2>
       <p>{{ t().projLead }}</p>
     </header>
-    <div class="projects">
+    <div class="cases">
       @for (p of projects; track p.id; let i = $index) {
-        <article vdCard variant="raised" class="project" [pfReveal]="i * 90">
-          <a class="project__shot" [href]="p.links[0].href" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <img [src]="p.image" [alt]="t().shotAlt(p.name)" width="1280" height="800" loading="lazy" decoding="async" />
+        <article class="case" [class.case--flip]="i % 2 === 1" [attr.aria-labelledby]="'case-' + p.id">
+          <a class="case__media" pfReveal [href]="p.links[0].href" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <span class="browser">
+              <span class="browser__bar">
+                <span class="browser__dots"><i></i><i></i><i></i></span>
+                <span class="browser__url">{{ host(p.links[0].href) }}</span>
+              </span>
+              <img [src]="p.image" [alt]="t().shotAlt(p.name)" width="1280" height="800" loading="lazy" decoding="async" />
+            </span>
+            @if (p.mobile) {
+              <span class="phone">
+                <img [src]="p.mobile" alt="" width="390" height="664" loading="lazy" decoding="async" />
+              </span>
+            }
           </a>
-          <header vdCardHeader>
-            <h3 vdCardTitle>{{ p.name }}</h3>
-            <p vdCardDescription>{{ tx(p.tagline) }}</p>
+          <div class="case__body" pfReveal="80">
             <span vdBadge variant="info">{{ tx(p.badge) }}</span>
-          </header>
-          <p class="project__text">{{ tx(p.description) }}</p>
-          <ul class="chips chips--tight">
-            @for (s of p.stack; track s) {
-              <li vdBadge>{{ s }}</li>
-            }
-          </ul>
-          <footer vdCardFooter class="project__links">
-            @for (l of p.links; track l.href) {
-              <a vdButton size="sm" [variant]="l.primary ? 'primary' : 'secondary'" [href]="l.href" target="_blank" rel="noopener">
-                {{ tx(l.label) }}<vd-icon slot="end" name="external-link" />
-              </a>
-            }
-          </footer>
+            <h3 class="case__title" [id]="'case-' + p.id">{{ p.name }}</h3>
+            <p class="case__summary">{{ tx(p.summary) }}</p>
+            <ul class="case__features">
+              @for (f of p.features; track $index) {
+                <li><vd-icon name="check" />{{ tx(f) }}</li>
+              }
+            </ul>
+            <ul class="chips chips--tight">
+              @for (s of p.stack; track s) {
+                <li vdBadge>{{ s }}</li>
+              }
+            </ul>
+            <div class="case__links">
+              @for (l of p.links; track l.href) {
+                <a vdButton [variant]="l.primary ? 'primary' : 'secondary'" [href]="l.href" target="_blank" rel="noopener">
+                  {{ tx(l.label) }}<vd-icon slot="end" name="external-link" />
+                </a>
+              }
+            </div>
+          </div>
         </article>
       }
     </div>

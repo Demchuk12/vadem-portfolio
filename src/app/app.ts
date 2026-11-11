@@ -13,8 +13,6 @@ import { VdBadge } from '@vadem/ui/badge';
 import { VdButton } from '@vadem/ui/button';
 import {
   VdCard,
-  VdCardDescription,
-  VdCardFooter,
   VdCardHeader,
   VdCardTitle,
 } from '@vadem/ui/card';
@@ -60,8 +58,6 @@ function write(key: string, value: string): void {
     VdBadge,
     VdButton,
     VdCard,
-    VdCardDescription,
-    VdCardFooter,
     VdCardHeader,
     VdCardTitle,
     VdIcon,
@@ -167,6 +163,11 @@ export class App {
     } else {
       this.theme.set(v);
     }
+  }
+
+  /** "vadem-quiz.vercel.app" for the browser-frame address bar. */
+  protected host(url: string): string {
+    return new URL(url).host + new URL(url).pathname.replace(/\/$/, '');
   }
 
   protected tx<T extends Record<Lang, string>>(v: T): string {

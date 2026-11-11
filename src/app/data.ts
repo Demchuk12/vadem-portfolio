@@ -18,9 +18,14 @@ export interface Project {
   name: string;
   /** Screenshot of the live app, 1280×800, in public/projects. */
   image: string;
+  /** Optional phone screenshot (390×664 @2x) shown over the browser frame. */
+  mobile?: string;
   badge: L10n;
   tagline: L10n;
-  description: L10n;
+  /** One or two sentences: what it is and who it is for. */
+  summary: L10n;
+  /** Three key facts, shown as a checklist. */
+  features: L10n[];
   stack: string[];
   links: { label: L10n; href: string; primary?: boolean }[];
 }
@@ -164,10 +169,15 @@ export const PROJECTS: Project[] = [
     name: 'Vadem UI',
     badge: { uk: 'Бібліотека · npm', en: 'Library · npm' },
     tagline: { uk: 'Власна Angular UI-бібліотека', en: 'My own Angular UI library' },
-    description: {
-      uk: 'Бібліотека @vadem/ui: 70+ компонентів на signals і OnPush, дизайн-токени, темна й світла теми, доступність, локалі EN/UK. Саме на ній зроблено цей сайт.',
-      en: '@vadem/ui: 70+ components built on signals and OnPush, design tokens, dark and light themes, accessibility and EN/UK locales. This very site is built with it.',
+    summary: {
+      uk: 'Моя Angular UI-бібліотека, опублікована в npm як @vadem/ui. На ній зроблено цей сайт і Vadem Quiz.',
+      en: 'My Angular UI library, published on npm as @vadem/ui. This site and Vadem Quiz are built with it.',
     },
+    features: [
+      { uk: '70+ компонентів на signals і OnPush', en: '70+ components built on signals and OnPush' },
+      { uk: 'Темна й світла теми на дизайн-токенах', en: 'Dark and light themes from design tokens' },
+      { uk: 'Доступність за WAI-ARIA, клавіатура, локалі EN/UK', en: 'WAI-ARIA accessibility, keyboard support, EN/UK locales' },
+    ],
     stack: ['Angular 22', 'TypeScript', 'CSS tokens', 'Playwright', 'npm'],
     links: [
       { label: { uk: 'Сайт і галерея', en: 'Site & gallery' }, href: 'https://demchuk12.github.io/vadem-ui-angular/gallery/', primary: true },
@@ -178,13 +188,19 @@ export const PROJECTS: Project[] = [
   {
     id: 'vadem-quiz',
     image: 'projects/vadem-quiz.jpg',
+    mobile: 'projects/vadem-quiz-mobile.jpg',
     name: 'Vadem Quiz',
     badge: { uk: 'AI · Realtime · PWA', en: 'AI · Realtime · PWA' },
     tagline: { uk: 'Живий квіз для друзів з AI-генерацією', en: 'Live quiz board game with AI generation' },
-    description: {
-      uk: 'AI пише раунди за темою чи брифом, змінює питання за інструкцією і підбирає фото з Wikipedia. Працює з Gemini безкоштовно або з власним ключем ChatGPT, Claude, Groq, Mistral чи OpenRouter. Гравці відповідають з телефонів кнопкою «хто перший»; Angular 22, @vadem/ui і Supabase (Realtime, Edge Functions).',
-      en: 'AI writes rounds from a topic or brief, edits questions by instruction and picks photos from Wikipedia. Runs on Gemini for free or on your own ChatGPT, Claude, Groq, Mistral or OpenRouter key. Players answer from phones with a first-press-wins buzzer; Angular 22, @vadem/ui and Supabase (Realtime, Edge Functions).',
+    summary: {
+      uk: 'Квіз-гра для компанії друзів: ведучий запускає питання, гравці тиснуть кнопку з телефонів, а табло йде в Discord-стрім.',
+      en: 'A quiz board game for friends: the host opens a question, players buzz in from their phones, and the board goes to a Discord stream.',
     },
+    features: [
+      { uk: 'AI пише раунди за темою, редагує питання й підбирає фото з Wikipedia', en: 'AI writes rounds from a topic, edits questions and picks photos from Wikipedia' },
+      { uk: 'Gemini безкоштовно або свій ключ: ChatGPT, Claude, Groq, Mistral, OpenRouter', en: 'Gemini for free or your own key: ChatGPT, Claude, Groq, Mistral, OpenRouter' },
+      { uk: 'Кнопка «хто перший» у реальному часі на Supabase Realtime', en: 'First-press-wins buzzer in real time on Supabase Realtime' },
+    ],
     stack: ['Angular 22', '@vadem/ui', 'Supabase', 'Edge Functions', 'LLM APIs', 'Realtime', 'PWA'],
     links: [
       { label: { uk: 'Відкрити', en: 'Open app' }, href: 'https://vadem-quiz.vercel.app', primary: true },
@@ -194,13 +210,19 @@ export const PROJECTS: Project[] = [
   {
     id: 'tourist-report',
     image: 'projects/tourist-report.jpg',
+    mobile: 'projects/tourist-report-mobile.jpg',
     name: 'Tourist Report',
     badge: { uk: 'SvelteKit · PWA', en: 'SvelteKit · PWA' },
     tagline: { uk: 'Звітність для керівників туристичних груп', en: 'Reporting for tour group leaders' },
-    description: {
-      uk: 'Тури, туристи, екскурсії, календар, глобальний пошук, друкований звіт у PDF. Дані в IndexedDB, офлайн-робота, українська й англійська локалізація.',
-      en: 'Tours, tourists, excursions, a calendar, global search and a printable PDF report. IndexedDB storage, offline support, Ukrainian and English localization.',
+    summary: {
+      uk: 'Робочий інструмент для керівників туристичних груп: тури, туристи й екскурсії, готові до звітності.',
+      en: 'A working tool for tour group leaders: tours, tourists and excursions, ready for reporting.',
     },
+    features: [
+      { uk: 'Календар турів і глобальний пошук (Ctrl+K)', en: 'Tour calendar and global search (Ctrl+K)' },
+      { uk: 'Розрахунок по туру і друкований звіт у PDF', en: 'Per-tour totals and a printable PDF report' },
+      { uk: 'Працює офлайн: IndexedDB і PWA, локалізація UA/EN', en: 'Works offline: IndexedDB and PWA, UA/EN localization' },
+    ],
     stack: ['SvelteKit 5', 'TypeScript', 'IndexedDB', 'Paraglide', 'PWA'],
     links: [
       { label: { uk: 'Відкрити', en: 'Open app' }, href: 'https://tourist-report.vercel.app', primary: true },
