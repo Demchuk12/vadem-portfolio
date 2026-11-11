@@ -19,6 +19,7 @@ import {
   VdTimelineTime,
   VdTimelineTitle,
 } from '@vadem/ui/timeline';
+import { PfReveal } from './reveal';
 import { COPY, JOBS, type Lang, PROFILE, PROJECTS, STACK_GROUPS } from './data';
 
 type Theme = 'auto' | 'light' | 'dark';
@@ -42,6 +43,7 @@ function write(key: string, value: string): void {
 @Component({
   selector: 'pf-root',
   imports: [
+    PfReveal,
     VdBadge,
     VdButton,
     VdCard,
@@ -112,7 +114,17 @@ export class App {
   }
 
   protected setTheme(v: string | null): void {
-    if (v === 'auto' || v === 'light' || v === 'dark') this.theme.set(v);
+    if (v !== 'auto' && v !== 'light' && v !== 'dark') return;
+    const reduce = this.doc.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const doc = this.doc as Document & { startViewTransition?: (cb: () => void) => unknown };
+    if (doc.startViewTransition && !reduce) {
+      doc.startViewTransition(() => {
+        this.theme.set(v);
+        this.doc.documentElement.setAttribute('data-theme', v);
+      });
+    } else {
+      this.theme.set(v);
+    }
   }
 
   protected tx<T extends Record<Lang, string>>(v: T): string {

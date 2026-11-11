@@ -59,3 +59,44 @@
 
 .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--vd-space-2); padding-block: var(--vd-space-8);
   color: var(--vd-color-text-subtle); font-size: var(--vd-text-sm); border-block-start: 1px solid var(--vd-color-border); }
+
+/* Hero entrance: children rise in one after another on first paint. */
+@keyframes pf-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero--enter > * { animation: pf-rise calc(var(--vd-duration-slow) * 2) var(--vd-ease-out) both; }
+.hero--enter > :nth-child(2) { animation-delay: 60ms; }
+.hero--enter > :nth-child(3) { animation-delay: 120ms; }
+.hero--enter > :nth-child(4) { animation-delay: 180ms; }
+.hero--enter > :nth-child(5) { animation-delay: 240ms; }
+.hero--enter > :nth-child(6) { animation-delay: 320ms; }
+
+/* Chips pop in when a stack tab opens. */
+@keyframes pf-pop { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
+.chip { animation: pf-pop var(--vd-duration-slow) var(--vd-ease-spring) both; animation-delay: calc(var(--i, 0) * 25ms); }
+
+/* Small affordances. */
+.nav a { transition: color var(--vd-duration-fast) var(--vd-ease-out); position: relative; }
+.nav a::after { content: ''; position: absolute; inset-inline: 0; inset-block-end: -4px; block-size: 2px; border-radius: 2px;
+  background: var(--vd-color-action); transform: scaleX(0); transform-origin: left;
+  transition: transform var(--vd-duration-base) var(--vd-ease-out); }
+.nav a:hover::after, .nav a:focus-visible::after { transform: scaleX(1); }
+.stats__item { transition: border-color var(--vd-duration-base) var(--vd-ease-out), transform var(--vd-duration-base) var(--vd-ease-out); }
+@media (hover: hover) { .stats__item:hover { border-color: var(--vd-color-border-strong); transform: translateY(-2px); } }
+.brand__mark img { transition: transform var(--vd-duration-slow) var(--vd-ease-spring); }
+@media (hover: hover) { .brand:hover .brand__mark img { transform: rotate(-8deg) scale(1.08); } }
+
+/* Tablet: two columns would orphan the third project, so the flagship (Vadem UI) spans the row. */
+@media (min-width: 40rem) and (max-width: 61rem) {
+  .projects { grid-template-columns: repeat(2, 1fr); }
+  .project:first-child { grid-column: 1 / -1; }
+}
+
+/* Touch: header toggles get finger-sized targets. */
+@media (pointer: coarse) {
+  .top__controls .vd-segment { min-block-size: 2.5rem; min-inline-size: 2.5rem; }
+}
+
+/* Narrow phones: keep the sticky header to one row — mark only, the name is in the hero anyway. */
+@media (max-width: 30rem) {
+  .top__row { flex-wrap: nowrap; }
+  .brand__name { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}

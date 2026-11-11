@@ -30,7 +30,7 @@
 </header>
 
 <main id="main">
-  <section class="hero wrap" id="top">
+  <section class="hero wrap hero--enter" id="top">
     <span vdBadge variant="success" dot>{{ t().hero.eyebrow }}</span>
     <h1 class="hero__title">
       Vasyl Demchuk
@@ -65,11 +65,11 @@
   </section>
 
   <section class="sec wrap" id="stack" aria-labelledby="stack-h">
-    <header class="sec__head">
+    <header class="sec__head" pfReveal>
       <h2 id="stack-h">{{ t().stackTitle }}</h2>
       <p>{{ t().stackLead }}</p>
     </header>
-    <vd-tabs variant="pill" [(value)]="stackTab">
+    <vd-tabs pfReveal variant="pill" [(value)]="stackTab">
       <div vdTabList [attr.aria-label]="t().stackTitle" class="stack__tabs">
         @for (g of groups; track g.id) {
           <button vdTab [value]="g.id">{{ tx(g.label) }}</button>
@@ -78,8 +78,8 @@
       @for (g of groups; track g.id) {
         <div vdTabPanel [value]="g.id">
           <ul class="chips">
-            @for (item of g.items; track item) {
-              <li vdBadge variant="neutral" class="chip">{{ item }}</li>
+            @for (item of g.items; track item; let i = $index) {
+              <li vdBadge variant="neutral" class="chip" [style.--i]="i">{{ item }}</li>
             }
           </ul>
         </div>
@@ -88,13 +88,13 @@
   </section>
 
   <section class="sec wrap" id="experience" aria-labelledby="exp-h">
-    <header class="sec__head">
+    <header class="sec__head" pfReveal>
       <h2 id="exp-h">{{ t().expTitle }}</h2>
       <p>{{ t().expLead }}</p>
     </header>
     <ol vdTimeline [label]="t().expLabel">
       @for (j of jobs(); track j.company) {
-        <li vdTimelineItem [status]="j.current ? 'success' : 'neutral'" [statusLabel]="j.current ? t().now + ' · ' + j.productText : j.productText">
+        <li vdTimelineItem pfReveal [status]="j.current ? 'success' : 'neutral'" [statusLabel]="j.current ? t().now + ' · ' + j.productText : j.productText">
           <time vdTimelineTime [attr.datetime]="j.datetime">{{ j.periodText }}</time>
           <h3 vdTimelineTitle>{{ j.roleText }} · <span class="co">{{ j.company }}</span></h3>
           <ul class="points">
@@ -113,13 +113,13 @@
   </section>
 
   <section class="sec wrap" id="projects" aria-labelledby="proj-h">
-    <header class="sec__head">
+    <header class="sec__head" pfReveal>
       <h2 id="proj-h">{{ t().projTitle }}</h2>
       <p>{{ t().projLead }}</p>
     </header>
     <div class="projects">
-      @for (p of projects; track p.id) {
-        <article vdCard variant="raised" class="project">
+      @for (p of projects; track p.id; let i = $index) {
+        <article vdCard variant="raised" class="project" [pfReveal]="i * 90">
           <header vdCardHeader>
             <h3 vdCardTitle>{{ p.name }}</h3>
             <p vdCardDescription>{{ tx(p.tagline) }}</p>
@@ -144,9 +144,9 @@
   </section>
 
   <section class="sec wrap" aria-labelledby="edu-h">
-    <header class="sec__head"><h2 id="edu-h">{{ t().eduTitle }}</h2></header>
+    <header class="sec__head" pfReveal><h2 id="edu-h">{{ t().eduTitle }}</h2></header>
     <div class="edu">
-      <article vdCard>
+      <article vdCard pfReveal>
         <header vdCardHeader>
           <h3 vdCardTitle>{{ t().edu }}</h3>
         </header>
@@ -156,7 +156,7 @@
           }
         </ul>
       </article>
-      <article vdCard>
+      <article vdCard pfReveal="90">
         <header vdCardHeader>
           <h3 vdCardTitle>{{ t().langsTitle }}</h3>
         </header>
@@ -170,7 +170,7 @@
   </section>
 
   <section class="sec wrap contact" id="contact" aria-labelledby="contact-h">
-    <div class="contact__box">
+    <div class="contact__box" pfReveal>
       <h2 id="contact-h">{{ t().contactTitle }}</h2>
       <p>{{ t().contactLead }}</p>
       <div class="hero__cta">
