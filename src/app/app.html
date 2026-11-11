@@ -67,11 +67,11 @@
       }
     </div>
 
-    <dl class="stats">
+    <div class="stats">
       @for (s of t().stats; track s.label) {
         <vd-stat class="stats__item" [label]="s.label" [value]="s.value" [caption]="s.caption" />
       }
-    </dl>
+    </div>
   </section>
 
   <section class="sec wrap" id="experience" aria-labelledby="exp-h">

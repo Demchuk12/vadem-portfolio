@@ -68,11 +68,11 @@ function seed(): number[] {
         <h2 vdCardTitle class="demo__title">{{ t().title }}</h2>
         <span vdBadge variant="success" dot class="demo__live">{{ t().live }}</span>
       </header>
-      <dl class="demo__stats">
+      <div class="demo__stats">
         <vd-stat size="sm" [label]="t().temp" [value]="tempText()" [delta]="tempDelta().text"
                  [trend]="tempDelta().trend" />
         <vd-stat size="sm" [label]="t().pressure" [value]="pressureText()" />
-      </dl>
+      </div>
       <vd-line-chart [title]="t().chart" [description]="t().chartDesc" [height]="150"
                      [categories]="labels()" [series]="series()" [format]="fmtDev" />
       <p class="demo__note" id="demo-note">{{ t().note }}</p>
