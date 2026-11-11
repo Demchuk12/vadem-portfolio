@@ -29,7 +29,8 @@
 </header>
 
 <main id="main">
-  <section class="hero wrap hero--enter" id="top">
+  <section class="hero wrap" id="top">
+    <div class="hero__main hero--enter">
     <span vdBadge variant="success" dot>{{ t().hero.eyebrow }}</span>
     <h1 class="hero__title">
       Vasyl Demchuk
@@ -48,12 +49,19 @@
       <a vdButton size="lg" href="#projects">
         {{ t().hero.cv }}<vd-icon slot="end" name="arrow-down" />
       </a>
-      <a vdButton variant="ghost" size="lg" [href]="profile.github" target="_blank" rel="noopener">
-        <vd-icon slot="start" name="git-branch" />GitHub
-      </a>
-      <a vdButton variant="ghost" size="lg" [href]="profile.linkedin" target="_blank" rel="noopener">
-        <vd-icon slot="start" name="user" />LinkedIn
-      </a>
+      <span class="hero__social">
+        <a vdButton variant="ghost" size="lg" [href]="profile.github" target="_blank" rel="noopener">GitHub</a>
+        <a vdButton variant="ghost" size="lg" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      </span>
+    </div>
+
+    </div>
+    <div class="hero__demo">
+      @if (lang() === 'uk') {
+        <pf-live-demo-uk />
+      } @else {
+        <pf-live-demo-en />
+      }
     </div>
 
     <dl class="stats">

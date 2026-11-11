@@ -28,6 +28,7 @@ import {
   VdTimelineTime,
   VdTimelineTitle,
 } from '@vadem/ui/timeline';
+import { PfLiveDemoEn, PfLiveDemoUk } from './live-demo';
 import { PfReveal } from './reveal';
 import { COPY, JOBS, type Lang, PROFILE, PROJECTS, STACK_GROUPS } from './data';
 
@@ -52,6 +53,8 @@ function write(key: string, value: string): void {
 @Component({
   selector: 'pf-root',
   imports: [
+    PfLiveDemoEn,
+    PfLiveDemoUk,
     PfReveal,
     VdBadge,
     VdButton,

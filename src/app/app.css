@@ -137,3 +137,14 @@
 .project__shot img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: top;
   transition: transform calc(var(--vd-duration-slow) * 2) var(--vd-ease-out); }
 @media (hover: hover) { .project:hover .project__shot img { transform: scale(1.04); } }
+
+/* Hero: text column + live demo on wide screens; stats span the full row. */
+.hero { justify-items: stretch; }
+.hero__main { display: grid; gap: var(--vd-space-5); justify-items: start; }
+.hero__demo { display: none; }
+@media (min-width: 64rem) {
+  .hero { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; column-gap: var(--vd-space-10); }
+  .hero__demo { display: block; animation: pf-rise calc(var(--vd-duration-slow) * 3) var(--vd-ease-out) 300ms both; }
+  .stats { grid-column: 1 / -1; }
+}
+.hero__social { display: inline-flex; gap: var(--vd-space-1); }
