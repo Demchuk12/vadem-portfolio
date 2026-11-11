@@ -50,8 +50,8 @@
         <vd-icon slot="start" name="download" />{{ t().hero.download }}
       </a>
       <span class="hero__social">
-        <a vdButton variant="ghost" size="lg" [href]="profile.github" target="_blank" rel="noopener">GitHub</a>
-        <a vdButton variant="ghost" size="lg" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a vdButton variant="ghost" size="lg" [href]="profile.github" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="github" />GitHub</a>
+        <a vdButton variant="ghost" size="lg" [href]="profile.linkedin" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="linkedin" />LinkedIn</a>
       </span>
     </div>
 
@@ -151,7 +151,13 @@
             <div class="case__links">
               @for (l of p.links; track l.href) {
                 <a vdButton [variant]="l.primary ? 'primary' : 'secondary'" [href]="l.href" target="_blank" rel="noopener">
-                  {{ tx(l.label) }}<vd-icon slot="end" name="external-link" />
+                  @if (brandOf(l.href); as b) {
+                    <pf-brand-icon slot="start" [name]="b" />
+                  }
+                  {{ tx(l.label) }}
+                  @if (!brandOf(l.href)) {
+                    <vd-icon slot="end" name="external-link" />
+                  }
                 </a>
               }
             </div>
@@ -200,9 +206,9 @@
           <vd-icon slot="start" name="mail" />{{ profile.email }}
         </a>
         <a vdButton size="lg" [href]="profile.cv" download><vd-icon slot="start" name="download" />{{ t().hero.download }}</a>
-        <a vdButton size="lg" [href]="profile.telegram" target="_blank" rel="noopener">Telegram</a>
-        <a vdButton size="lg" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
-        <a vdButton size="lg" [href]="profile.github" target="_blank" rel="noopener">GitHub</a>
+        <a vdButton size="lg" [href]="profile.telegram" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="telegram" />Telegram</a>
+        <a vdButton size="lg" [href]="profile.linkedin" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="linkedin" />LinkedIn</a>
+        <a vdButton size="lg" [href]="profile.github" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="github" />GitHub</a>
       </div>
     </div>
   </section>

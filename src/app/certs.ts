@@ -15,6 +15,7 @@ import { VdButton } from '@vadem/ui/button';
 import { VdIcon } from '@vadem/ui/icon';
 import { type SimpleIcon, siAnthropic, siHuggingface } from 'simple-icons';
 import type { Lang } from './data';
+import { PfBrandIcon } from './brand-icon';
 import { PfReveal } from './reveal';
 import { luminance } from './stack';
 
@@ -66,7 +67,7 @@ const TEXT = {
  */
 @Component({
   selector: 'pf-certs',
-  imports: [PfReveal, VdBadge, VdButton, VdIcon],
+  imports: [PfBrandIcon, PfReveal, VdBadge, VdButton, VdIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './certs.html',
   styleUrl: './certs.css',

@@ -50,3 +50,14 @@ html {
 
 ::view-transition-old(root),
 ::view-transition-new(root) { animation-duration: 280ms; animation-timing-function: ease-out; }
+
+/* Brand marks: slightly smaller than stroke icons (solid glyphs read heavier); tint on hover. */
+.pf-brand { --vd-icon-size: 1.1em; transition: color var(--vd-duration-fast) var(--vd-ease-out); }
+@media (hover: hover) {
+  a:hover > .pf-brand[data-brand='linkedin'] { color: #0a66c2; }
+  a:hover > .pf-brand[data-brand='telegram'] { color: #26a5e4; }
+  a:hover > .pf-brand[data-brand='npm'] { color: #cb3837; }
+  :root[data-theme='light'] a:hover > .pf-brand[data-brand='github'] { color: #181717; }
+}
+/* Primary (filled) buttons keep the on-action color. */
+.vd-button[data-variant='primary'] > .pf-brand { color: inherit !important; }

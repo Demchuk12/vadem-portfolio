@@ -25,6 +25,7 @@ import {
   VdTimelineTime,
   VdTimelineTitle,
 } from '@vadem/ui/timeline';
+import { PfBrandIcon, brandOf } from './brand-icon';
 import { PfCerts } from './certs';
 import { PfLiveDemoEn, PfLiveDemoUk } from './live-demo';
 import { PfReveal } from './reveal';
@@ -52,6 +53,7 @@ function write(key: string, value: string): void {
 @Component({
   selector: 'pf-root',
   imports: [
+    PfBrandIcon,
     PfCerts,
     PfLiveDemoEn,
     PfLiveDemoUk,
@@ -79,6 +81,7 @@ export class App {
   private readonly doc = inject(DOCUMENT);
 
   protected readonly profile = PROFILE;
+  protected readonly brandOf = brandOf;
   protected readonly projects = PROJECTS;
   protected readonly year = new Date().getFullYear();
 
