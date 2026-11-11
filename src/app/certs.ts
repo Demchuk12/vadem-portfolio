@@ -99,9 +99,9 @@ export class PfCerts {
       };
       sync();
       el.addEventListener('scroll', sync, { passive: true });
-      const ro = new ResizeObserver(sync);
-      ro.observe(el);
-      destroyRef.onDestroy(() => { el.removeEventListener('scroll', sync); ro.disconnect(); });
+      const ro = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(sync);
+      ro?.observe(el);
+      destroyRef.onDestroy(() => { el.removeEventListener('scroll', sync); ro?.disconnect(); });
     });
   }
 

@@ -134,6 +134,8 @@ export class PfLiveDemo {
         if (run && !timer) timer = setInterval(() => this.tick(), TICK_MS);
         if (!run && timer) { clearInterval(timer); timer = undefined; }
       };
+      // Without IntersectionObserver (old browsers, tests) the demo simply stays static.
+      if (typeof IntersectionObserver === 'undefined') return;
       const io = new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; sync(); });
       io.observe(host);
       this.doc.addEventListener('visibilitychange', sync);

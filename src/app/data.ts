@@ -36,6 +36,7 @@ export const PROFILE = {
   telegram: 'https://t.me/inseyul',
   github: 'https://github.com/Demchuk12',
   linkedin: 'https://www.linkedin.com/in/vasyl-demchuk-152148255/',
+  source: 'https://github.com/Demchuk12/vadem-portfolio',
   title: {
     uk: 'Frontend / Full Stack інженер',
     en: 'Frontend / Full Stack Engineer',
@@ -273,6 +274,7 @@ export const COPY = {
     copyErrorMsg: 'Не вдалося скопіювати. Виділіть адресу й скопіюйте вручну.',
     contactLead: 'Розглядаю full-time, контракт / B2B (ФОП) і part-time. Пишіть на пошту або в Telegram.',
     builtWith: 'Зроблено на Angular 22 і @vadem/ui',
+    source: 'Код сайту',
     theme: 'Тема',
     themes: { auto: 'Авто', light: 'Світла', dark: 'Темна' },
     lang: 'Мова',
@@ -320,6 +322,7 @@ export const COPY = {
     copyErrorMsg: 'Could not copy. Select the address and copy it manually.',
     contactLead: 'Open to full-time, contract / B2B and part-time roles. Reach me by email or Telegram.',
     builtWith: 'Built with Angular 22 and @vadem/ui',
+    source: 'Source code',
     theme: 'Theme',
     themes: { auto: 'Auto', light: 'Light', dark: 'Dark' },
     lang: 'Language',

@@ -178,3 +178,6 @@
   color: var(--vd-color-text-muted); font-size: var(--vd-text-sm); }
 .hero__facts li { display: inline-flex; align-items: center; gap: var(--vd-space-2); }
 .hero__facts li::before { content: ''; inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--vd-color-text-accent); opacity: 0.7; }
+
+.foot__link { display: inline-flex; align-items: center; gap: var(--vd-space-1-5); color: var(--vd-color-text-muted); text-decoration: none; }
+.foot__link:hover { color: var(--vd-color-text); text-decoration: underline; text-underline-offset: 3px; }
