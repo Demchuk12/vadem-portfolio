@@ -9,6 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { VdBadge } from '@vadem/ui/badge';
 import { VdButton } from '@vadem/ui/button';
 import { VdCopyButton } from '@vadem/ui/copy-button';
@@ -83,14 +84,19 @@ function write(key: string, value: string): void {
 })
 export class App {
   private readonly doc = inject(DOCUMENT);
+  private readonly router = inject(Router);
 
   protected readonly profile = PROFILE;
   protected readonly brandOf = brandOf;
   protected readonly projects = PROJECTS;
   protected readonly year = new Date().getFullYear();
 
+  /**
+   * The URL decides the language (`/uk` or `/`), so the prerendered HTML and the hydrated app always
+   * agree. The visitor's preference is applied before first paint by the redirect in index.html.
+   */
   protected readonly lang = signal<Lang>(
-    read('pf-lang') === 'en' ? 'en' : read('pf-lang') === 'uk' ? 'uk' : this.detectLang(),
+    /^\/uk(\/|$)/.test(this.doc.location?.pathname ?? '/') ? 'uk' : 'en',
   );
   protected readonly theme = signal<Theme>(this.initialTheme());
   /** Section currently in view, for the nav highlight. */
@@ -129,7 +135,6 @@ export class App {
     effect(() => {
       const l = this.lang();
       this.doc.documentElement.lang = l;
-      write('pf-lang', l);
     });
     effect(() => {
       const th = this.theme();
@@ -159,7 +164,10 @@ export class App {
   }
 
   protected setLang(v: string | null): void {
-    if (v === 'uk' || v === 'en') this.lang.set(v);
+    if (v !== 'uk' && v !== 'en') return;
+    write('pf-lang', v);
+    this.lang.set(v);
+    void this.router.navigateByUrl(v === 'uk' ? '/uk' : '/');
   }
 
   protected setTheme(v: string | null): void {
@@ -183,12 +191,6 @@ export class App {
 
   protected tx<T extends Record<Lang, string>>(v: T): string {
     return v[this.lang()];
-  }
-
-  private detectLang(): Lang {
-    return (this.doc.defaultView?.navigator.language ?? 'en').toLowerCase().startsWith('uk')
-      ? 'uk'
-      : 'en';
   }
 
   private initialTheme(): Theme {

@@ -82,6 +82,8 @@
 /* Touch: header toggles get finger-sized targets. */
 @media (pointer: coarse) {
   .top__controls .vd-segment { min-block-size: 2.5rem; min-inline-size: 2.5rem; }
+  /* Reserve the final height so the header doesn't grow when web fonts arrive (CLS). */
+  .top__controls { min-block-size: 2.875rem; align-items: center; }
 }
 
 /* Narrow phones: keep the sticky header to one row — mark only, the name is in the hero anyway. */

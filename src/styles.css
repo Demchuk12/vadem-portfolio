@@ -33,7 +33,7 @@ html {
 }
 
 /* ---------- Motion (durations collapse to 0 under reduced motion via Vadem tokens) ---------- */
-.reveal {
+:root.js .reveal {
   opacity: 0;
   transform: translateY(16px);
   transition:
@@ -41,10 +41,10 @@ html {
     transform calc(var(--vd-duration-slow) * 2) var(--vd-ease-out);
   transition-delay: var(--reveal-delay, 0ms);
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+:root.js .reveal.is-visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; }
+  :root.js .reveal { opacity: 1; transform: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
 

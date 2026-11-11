@@ -4,6 +4,27 @@
     <meta charset="utf-8" />
     <title>Vasyl Demchuk — Frontend / Full Stack Engineer</title>
     <base href="/" />
+    <script>
+      /* Before first paint: apply the saved theme (no dark flash for light users) and mark JS as
+         available, so scroll-reveal only hides content when it can reveal it again. */
+      (function (d) {
+        d.classList.add('js');
+        /* Ukrainian visitors land on the Ukrainian prerender. Only the root redirects, so a shared
+           /uk link always opens in Ukrainian. */
+        try {
+          var lang = localStorage.getItem('pf-lang');
+        } catch (e) {}
+        var root = location.pathname === '/' || location.pathname === '/index.html';
+        if (root && (lang === 'uk' || (!lang && /^uk\b/i.test(navigator.language || '')))) {
+          location.replace('/uk' + location.search + location.hash);
+          return;
+        }
+        try {
+          var t = localStorage.getItem('pf-theme');
+          if (t === 'light' || t === 'dark' || t === 'auto') d.setAttribute('data-theme', t);
+        } catch (e) {}
+      })(document.documentElement);
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content="Vasyl Demchuk, Frontend / Full Stack Engineer: Angular, TypeScript, .NET, PostgreSQL, SignalR. Experience, side projects and CV." />
     <meta name="theme-color" content="#0a100c" />
