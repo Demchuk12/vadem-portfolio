@@ -10,10 +10,9 @@
       <span class="brand__name">Vasyl Demchuk</span>
     </a>
     <nav class="nav" [attr.aria-label]="t().navLabel">
-      <a href="#stack">{{ t().nav.stack }}</a>
-      <a href="#experience">{{ t().nav.experience }}</a>
-      <a href="#projects">{{ t().nav.projects }}</a>
-      <a href="#contact">{{ t().nav.contact }}</a>
+      @for (s of sections; track s.id) {
+        <a [href]="'#' + s.id" [attr.aria-current]="active() === s.id ? 'true' : null">{{ t().nav[s.id] }}</a>
+      }
     </nav>
     <div class="top__controls">
       <vd-segmented size="sm" [aria-label]="t().theme" [value]="theme()" (valueChange)="setTheme($event)">
@@ -93,7 +92,7 @@
       <p>{{ t().expLead }}</p>
     </header>
     <ol vdTimeline [label]="t().expLabel">
-      @for (j of jobs(); track j.company) {
+      @for (j of shownJobs(); track j.company) {
         <li vdTimelineItem pfReveal [status]="j.current ? 'success' : 'neutral'" [statusLabel]="j.current ? t().now + ' · ' + j.productText : j.productText">
           <time vdTimelineTime [attr.datetime]="j.datetime">{{ j.periodText }}</time>
           <h3 vdTimelineTitle>{{ j.roleText }} · <span class="co">{{ j.company }}</span></h3>
@@ -110,6 +109,14 @@
         </li>
       }
     </ol>
+    @if (hiddenJobsCount() > 0) {
+      <div class="more">
+        <button vdButton variant="ghost" (click)="showAllJobs.set(!showAllJobs())" [attr.aria-expanded]="showAllJobs()">
+          {{ showAllJobs() ? t().showLess : t().showMore(hiddenJobsCount()) }}
+          <vd-icon slot="end" [name]="showAllJobs() ? 'chevron-up' : 'chevron-down'" />
+        </button>
+      </div>
+    }
   </section>
 
   <section class="sec wrap" id="projects" aria-labelledby="proj-h">
@@ -184,6 +191,15 @@
     </div>
   </section>
 </main>
+
+<nav class="tabbar" [attr.aria-label]="t().navLabel">
+  @for (s of sections; track s.id) {
+    <a class="tabbar__item" [href]="'#' + s.id" [attr.aria-current]="active() === s.id ? 'true' : null">
+      <vd-icon [name]="s.icon" />
+      <span>{{ t().nav[s.id] }}</span>
+    </a>
+  }
+</nav>
 
 <footer class="foot wrap">
   <span>© {{ year }} Vasyl Demchuk</span>

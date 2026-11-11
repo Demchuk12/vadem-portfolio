@@ -100,3 +100,29 @@
   .top__row { flex-wrap: nowrap; }
   .brand__name { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
+
+/* Active section in the top nav. */
+.nav a[aria-current='true'] { color: var(--vd-color-text); }
+.nav a[aria-current='true']::after { transform: scaleX(1); }
+
+.more { display: flex; justify-content: center; margin-block-start: var(--vd-space-4); }
+
+/* Phone/tablet: bottom tab bar replaces the hidden top nav. */
+.tabbar { display: none; }
+@media (max-width: 52rem) {
+  .tabbar {
+    position: fixed; inset-inline: var(--vd-space-3); inset-block-end: calc(var(--vd-space-3) + env(safe-area-inset-bottom));
+    z-index: 15; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--vd-space-1); padding: var(--vd-space-1);
+    border: 1px solid var(--vd-color-border); border-radius: var(--vd-radius-2xl);
+    background: var(--vd-color-surface-glass); backdrop-filter: blur(16px); box-shadow: var(--vd-shadow-lg);
+    animation: pf-rise calc(var(--vd-duration-slow) * 2) var(--vd-ease-out) 400ms both;
+  }
+  .tabbar__item {
+    display: grid; justify-items: center; gap: 2px; padding-block: var(--vd-space-2); min-block-size: 3rem;
+    border-radius: var(--vd-radius-xl); color: var(--vd-color-text-muted); text-decoration: none; font-size: 0.6875rem;
+    transition: color var(--vd-duration-fast) var(--vd-ease-out), background-color var(--vd-duration-base) var(--vd-ease-out);
+  }
+  .tabbar__item[aria-current='true'] { color: var(--vd-color-text-accent); background: var(--vd-color-action-subtle); }
+  .tabbar__item vd-icon { inline-size: 1.25rem; block-size: 1.25rem; }
+  .foot { padding-block-end: calc(var(--vd-space-24) + env(safe-area-inset-bottom)); }
+}

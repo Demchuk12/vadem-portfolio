@@ -1,5 +1,14 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  afterNextRender,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { VdBadge } from '@vadem/ui/badge';
 import { VdButton } from '@vadem/ui/button';
 import {
@@ -81,6 +90,17 @@ export class App {
   );
   protected readonly theme = signal<Theme>(this.initialTheme());
   protected readonly stackTab = signal<string>('frontend');
+  /** Section currently in view, for the nav highlight. */
+  protected readonly active = signal<string>('');
+  /** Older jobs stay collapsed until asked for. */
+  protected readonly showAllJobs = signal(false);
+  protected readonly visibleJobsCount = 3;
+  protected readonly sections = [
+    { id: 'stack', icon: 'layout-dashboard' },
+    { id: 'experience', icon: 'activity' },
+    { id: 'projects', icon: 'folder' },
+    { id: 'contact', icon: 'mail' },
+  ] as const;
 
   protected readonly t = computed(() => COPY[this.lang()]);
   /** Jobs as render-ready rows, newest first (the data is already in that order). */
@@ -95,6 +115,10 @@ export class App {
       datetime: j.from,
     }));
   });
+  protected readonly shownJobs = computed(() =>
+    this.showAllJobs() ? this.jobs() : this.jobs().slice(0, this.visibleJobsCount),
+  );
+  protected readonly hiddenJobsCount = computed(() => this.jobs().length - this.visibleJobsCount);
 
   constructor() {
     effect(() => {
@@ -106,6 +130,26 @@ export class App {
       const th = this.theme();
       this.doc.documentElement.setAttribute('data-theme', th);
       write('pf-theme', th);
+    });
+    this.watchSections();
+  }
+
+  /** Scroll-spy: the section crossing the upper third of the viewport is "active". */
+  private watchSections(): void {
+    const destroyRef = inject(DestroyRef);
+    afterNextRender(() => {
+      if (typeof IntersectionObserver === 'undefined') return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) if (e.isIntersecting) this.active.set(e.target.id);
+        },
+        { rootMargin: '-35% 0px -60% 0px' },
+      );
+      for (const id of ['top', ...this.sections.map((s) => s.id)]) {
+        const el = this.doc.getElementById(id);
+        if (el) io.observe(el);
+      }
+      destroyRef.onDestroy(() => io.disconnect());
     });
   }
 
