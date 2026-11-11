@@ -108,13 +108,6 @@
     transition: transform var(--vd-duration-slow) var(--vd-ease-out), opacity var(--vd-duration-slow) var(--vd-ease-out);
   }
   .tabbar--shown { transform: none; opacity: 1; pointer-events: auto; }
-  .tabbar__item {
-    display: grid; justify-items: center; gap: 2px; padding-block: var(--vd-space-2); min-block-size: 3rem;
-    border-radius: var(--vd-radius-xl); color: var(--vd-color-text-muted); text-decoration: none; font-size: 0.6875rem;
-    transition: color var(--vd-duration-fast) var(--vd-ease-out), background-color var(--vd-duration-base) var(--vd-ease-out);
-  }
-  .tabbar__item[aria-current='true'] { color: var(--vd-color-text-accent); background: var(--vd-color-action-subtle); }
-  .tabbar__item vd-icon { inline-size: 1.25rem; block-size: 1.25rem; }
   .foot { padding-block-end: calc(var(--vd-space-24) + env(safe-area-inset-bottom)); }
 }
 

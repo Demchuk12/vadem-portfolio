@@ -28,6 +28,7 @@ import {
 } from '@vadem/ui/timeline';
 import { PfBrandIcon, brandOf } from './brand-icon';
 import { PfCerts } from './certs';
+import { PfCvMenu } from './cv-menu';
 import { PfLiveDemoEn, PfLiveDemoUk } from './live-demo';
 import { PfReveal } from './reveal';
 import { PfTechDashboard } from './tech-dashboard';
@@ -56,6 +57,7 @@ function write(key: string, value: string): void {
   imports: [
     PfBrandIcon,
     PfCerts,
+    PfCvMenu,
     PfLiveDemoEn,
     PfLiveDemoUk,
     PfReveal,

@@ -51,9 +51,7 @@
       <a vdButton variant="primary" size="lg" [href]="'mailto:' + profile.email">
         <vd-icon slot="start" name="mail" />{{ t().hero.cta }}
       </a>
-      <a vdButton size="lg" [href]="profile.cv" download>
-        <vd-icon slot="start" name="download" />{{ t().hero.download }}
-      </a>
+      <pf-cv-menu [lang]="lang()" />
       <span class="hero__social">
         <a vdButton variant="ghost" size="lg" [href]="profile.github" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="github" />GitHub</a>
         <a vdButton variant="ghost" size="lg" [href]="profile.linkedin" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="linkedin" />LinkedIn</a>
@@ -212,7 +210,7 @@
         </a>
         <vd-copy-button iconOnly size="lg" [value]="profile.email" [label]="t().copyEmail" [copiedLabel]="t().copied"
                         [copyingLabel]="t().copying" [errorLabel]="t().copyError" [errorMessage]="t().copyErrorMsg" />
-        <a vdButton size="lg" [href]="profile.cv" download><vd-icon slot="start" name="download" />{{ t().hero.download }}</a>
+        <pf-cv-menu [lang]="lang()" />
         <a vdButton size="lg" [href]="profile.telegram" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="telegram" />Telegram</a>
         <a vdButton size="lg" [href]="profile.linkedin" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="linkedin" />LinkedIn</a>
         <a vdButton size="lg" [href]="profile.github" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="github" />GitHub</a>
@@ -228,10 +226,7 @@
       <span>{{ t().nav[s.id] }}</span>
     </a>
   }
-  <a class="tabbar__item" [href]="profile.cv" download>
-    <vd-icon name="download" />
-    <span>{{ t().cvShort }}</span>
-  </a>
+  <pf-cv-menu appearance="tab" [lang]="lang()" />
 </nav>
 
 <footer class="foot wrap">

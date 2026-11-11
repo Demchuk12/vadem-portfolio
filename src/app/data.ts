@@ -36,7 +36,6 @@ export const PROFILE = {
   telegram: 'https://t.me/inseyul',
   github: 'https://github.com/Demchuk12',
   linkedin: 'https://www.linkedin.com/in/vasyl-demchuk-152148255/',
-  cv: 'Vasyl_Demchuk_Full_Stack_Engineer_CV.pdf',
   title: {
     uk: 'Frontend / Full Stack інженер',
     en: 'Frontend / Full Stack Engineer',
@@ -241,7 +240,6 @@ export const COPY = {
       lead: 'Понад 5 років будую складні вебзастосунки: від CRM і банкінгу до моніторингу заводу в реальному часі. Сильна база в Angular і TypeScript, а останнім часом ще й .NET, PostgreSQL та SignalR.',
       cta: 'Написати мені',
       cv: 'Мої проєкти',
-      download: 'Завантажити CV',
     },
     stats: [
       { label: 'Років досвіду', value: '5+', caption: 'комерційна розробка' },
@@ -273,7 +271,6 @@ export const COPY = {
     copying: 'Копіюю…',
     copyError: 'Спробуйте ще',
     copyErrorMsg: 'Не вдалося скопіювати. Виділіть адресу й скопіюйте вручну.',
-    cvShort: 'CV',
     contactLead: 'Відкритий до повної зайнятості та контрактів. Пишіть на пошту або в Telegram.',
     builtWith: 'Зроблено на Angular 22 і @vadem/ui',
     theme: 'Тема',
@@ -290,7 +287,6 @@ export const COPY = {
       lead: 'For 5+ years I have been building complex web applications, from CRM and banking to real-time factory monitoring. A strong Angular and TypeScript foundation, recently extended with .NET, PostgreSQL and SignalR.',
       cta: 'Get in touch',
       cv: 'See my projects',
-      download: 'Download CV',
     },
     stats: [
       { label: 'Years of experience', value: '5+', caption: 'commercial development' },
@@ -322,7 +318,6 @@ export const COPY = {
     copying: 'Copying…',
     copyError: 'Try again',
     copyErrorMsg: 'Could not copy. Select the address and copy it manually.',
-    cvShort: 'CV',
     contactLead: 'Open to full-time roles and contracts. Reach me by email or Telegram.',
     builtWith: 'Built with Angular 22 and @vadem/ui',
     theme: 'Theme',
