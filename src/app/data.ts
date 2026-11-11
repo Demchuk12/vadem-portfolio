@@ -30,6 +30,9 @@ export interface Project {
   links: { label: L10n; href: string; primary?: boolean }[];
 }
 
+/** Production origin, for canonical / hreflang / Open Graph URLs. */
+export const SITE = 'https://vadem-portfolio.vercel.app';
+
 export const PROFILE = {
   name: 'Vasyl Demchuk',
   email: 'vasyldemchuk1@gmail.com',
@@ -234,6 +237,8 @@ export const PROJECTS: Project[] = [
 export const COPY = {
   uk: {
     navLabel: 'Розділи сторінки',
+    metaTitle: 'Vasyl Demchuk — Frontend / Full Stack інженер',
+    metaDescription: 'Vasyl Demchuk, Frontend / Full Stack інженер: Angular, TypeScript, .NET, PostgreSQL, SignalR. Досвід, проєкти та CV.',
     nav: { about: 'Про мене', stack: 'Стек', experience: 'Досвід', projects: 'Проєкти', contact: 'Контакти' },
     hero: {
       eyebrow: 'Відкритий до пропозицій',
@@ -282,6 +287,8 @@ export const COPY = {
   },
   en: {
     navLabel: 'Page sections',
+    metaTitle: 'Vasyl Demchuk — Frontend / Full Stack Engineer',
+    metaDescription: 'Vasyl Demchuk, Frontend / Full Stack Engineer: Angular, TypeScript, .NET, PostgreSQL, SignalR. Experience, side projects and CV.',
     nav: { about: 'About', stack: 'Stack', experience: 'Experience', projects: 'Projects', contact: 'Contact' },
     hero: {
       eyebrow: 'Open to work',

@@ -9,6 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { VdBadge } from '@vadem/ui/badge';
 import { VdButton } from '@vadem/ui/button';
@@ -33,7 +34,7 @@ import { PfCvMenu } from './cv-menu';
 import { PfLiveDemoEn, PfLiveDemoUk } from './live-demo';
 import { PfReveal } from './reveal';
 import { PfTechDashboard } from './tech-dashboard';
-import { COPY, JOBS, type Lang, PROFILE, PROJECTS } from './data';
+import { COPY, JOBS, type Lang, PROFILE, PROJECTS, SITE } from './data';
 
 type Theme = 'auto' | 'light' | 'dark';
 
@@ -85,6 +86,8 @@ function write(key: string, value: string): void {
 export class App {
   private readonly doc = inject(DOCUMENT);
   private readonly router = inject(Router);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
 
   protected readonly profile = PROFILE;
   protected readonly brandOf = brandOf;
@@ -132,9 +135,23 @@ export class App {
   protected readonly hiddenJobsCount = computed(() => this.jobs().length - this.visibleJobsCount);
 
   constructor() {
+    // Runs during prerender too, so each language's HTML carries its own head tags.
     effect(() => {
       const l = this.lang();
+      const t = COPY[l];
+      const url = l === 'uk' ? `${SITE}/uk` : SITE;
       this.doc.documentElement.lang = l;
+      this.title.setTitle(t.metaTitle);
+      this.meta.updateTag({ name: 'description', content: t.metaDescription });
+      this.meta.updateTag({ property: 'og:title', content: t.metaTitle });
+      this.meta.updateTag({ property: 'og:description', content: t.metaDescription });
+      this.meta.updateTag({ property: 'og:url', content: url });
+      this.meta.updateTag({ property: 'og:locale', content: l === 'uk' ? 'uk_UA' : 'en_US' });
+      this.meta.updateTag({ name: 'twitter:title', content: t.metaTitle });
+      this.setLink('canonical', url);
+      this.setLink('alternate', SITE, 'en');
+      this.setLink('alternate', `${SITE}/uk`, 'uk');
+      this.setLink('alternate', SITE, 'x-default');
     });
     effect(() => {
       const th = this.theme();
@@ -142,6 +159,20 @@ export class App {
       write('pf-theme', th);
     });
     this.watchSections();
+  }
+
+  /** Creates or updates one <link> in <head>, keyed by rel (+ hreflang for alternates). */
+  private setLink(rel: string, href: string, hreflang?: string): void {
+    const head = this.doc.head;
+    const selector = hreflang ? `link[rel="${rel}"][hreflang="${hreflang}"]` : `link[rel="${rel}"]`;
+    let link = head.querySelector<HTMLLinkElement>(selector);
+    if (!link) {
+      link = this.doc.createElement('link');
+      link.setAttribute('rel', rel);
+      if (hreflang) link.setAttribute('hreflang', hreflang);
+      head.appendChild(link);
+    }
+    link.setAttribute('href', href);
   }
 
   /** Scroll-spy: the section crossing the upper third of the viewport is "active". */
