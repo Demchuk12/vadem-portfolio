@@ -129,11 +129,13 @@
                 <span class="browser__dots"><i></i><i></i><i></i></span>
                 <span class="browser__url">{{ host(p.links[0].href) }}</span>
               </span>
-              <img [src]="p.image" [alt]="t().shotAlt(p.name)" width="1280" height="800" loading="lazy" decoding="async" />
+              <img [src]="p.image" [attr.srcset]="p.image.replace('.webp', '-640.webp') + ' 640w, ' + p.image + ' 1280w'"
+                   sizes="(min-width: 64rem) 36rem, calc(100vw - 2rem)" [alt]="t().shotAlt(p.name)" width="1280" height="800" loading="lazy" decoding="async" />
             </span>
             @if (p.mobile) {
               <span class="phone">
-                <img [src]="p.mobile" alt="" width="390" height="664" loading="lazy" decoding="async" />
+                <img [src]="p.mobile" [attr.srcset]="p.mobile.replace('.webp', '-390.webp') + ' 390w, ' + p.mobile + ' 780w'"
+                     sizes="(min-width: 64rem) 9rem, 24vw" alt="" width="390" height="664" loading="lazy" decoding="async" />
               </span>
             }
           </a>

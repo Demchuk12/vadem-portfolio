@@ -16,9 +16,9 @@ export interface Job {
 export interface Project {
   id: string;
   name: string;
-  /** Screenshot of the live app, 1280×800, in public/projects. */
+  /** Screenshot of the live app in public/projects: `<id>.webp` (1280×800) and `<id>-640.webp`. */
   image: string;
-  /** Optional phone screenshot (390×664 @2x) shown over the browser frame. */
+  /** Optional phone screenshot: `<id>-mobile.webp` (780×1328) and `<id>-mobile-390.webp`. */
   mobile?: string;
   badge: L10n;
   tagline: L10n;
@@ -164,7 +164,7 @@ export const JOBS: Job[] = [
 export const PROJECTS: Project[] = [
   {
     id: 'vadem-ui',
-    image: 'projects/vadem-ui.jpg',
+    image: 'projects/vadem-ui.webp',
     name: 'Vadem UI',
     badge: { uk: 'Бібліотека · npm', en: 'Library · npm' },
     tagline: { uk: 'Власна Angular UI-бібліотека', en: 'My own Angular UI library' },
@@ -186,8 +186,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'vadem-quiz',
-    image: 'projects/vadem-quiz.jpg',
-    mobile: 'projects/vadem-quiz-mobile.jpg',
+    image: 'projects/vadem-quiz.webp',
+    mobile: 'projects/vadem-quiz-mobile.webp',
     name: 'Vadem Quiz',
     badge: { uk: 'AI · Realtime · PWA', en: 'AI · Realtime · PWA' },
     tagline: { uk: 'Живий квіз для друзів з AI-генерацією', en: 'Live quiz board game with AI generation' },
@@ -208,8 +208,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'tourist-report',
-    image: 'projects/tourist-report.jpg',
-    mobile: 'projects/tourist-report-mobile.jpg',
+    image: 'projects/tourist-report.webp',
+    mobile: 'projects/tourist-report-mobile.webp',
     name: 'Tourist Report',
     badge: { uk: 'SvelteKit · PWA', en: 'SvelteKit · PWA' },
     tagline: { uk: 'Звітність для керівників туристичних груп', en: 'Reporting for tour group leaders' },
