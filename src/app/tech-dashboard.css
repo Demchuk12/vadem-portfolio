@@ -1,0 +1,74 @@
+:host { display: grid; gap: var(--vd-space-5); }
+
+.summary { display: grid; }
+.summary > * { padding: var(--vd-space-4) var(--vd-space-5); border: 1px solid var(--vd-color-border);
+  border-radius: var(--vd-radius-surface); background: var(--vd-color-surface); }
+.summary__label { color: var(--vd-color-text-muted); font-size: var(--vd-text-sm); }
+.summary__core { display: flex; flex-wrap: wrap; align-items: center; gap: var(--vd-space-2) var(--vd-space-4); }
+.summary__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--vd-space-2); }
+
+/* Bento: Frontend is the widest; the rest share the second row. */
+.bento { display: grid; gap: var(--vd-space-4); grid-template-columns: repeat(6, 1fr); }
+.group { grid-column: span 6; gap: var(--vd-space-4); }
+@media (min-width: 48rem) {
+  .group { grid-column: span 3; }
+  .group[data-group='frontend'] { grid-column: span 6; }
+  .group[data-group='ai'] { grid-column: span 6; }
+}
+@media (min-width: 64rem) {
+  .group[data-group='frontend'] { grid-column: span 4; grid-row: span 2; }
+  .group[data-group='backend'] { grid-column: span 2; grid-row: span 2; }
+  .group[data-group='arch'], .group[data-group='tools'], .group[data-group='ai'] { grid-column: span 2; }
+}
+
+.group__head { display: grid; grid-template-columns: auto 1fr auto; gap: var(--vd-space-3); align-items: center; }
+.group__icon { display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: var(--vd-radius-lg);
+  background: var(--vd-color-action-subtle); color: var(--vd-color-text-accent); }
+.group__title { margin: 0; font-size: var(--vd-text-md); }
+.group__hint { margin: 0; font-size: var(--vd-text-xs); color: var(--vd-color-text-subtle); }
+
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--vd-space-2);
+  grid-template-columns: repeat(auto-fill, minmax(6.25rem, 1fr)); }
+.group[data-group='backend'] .tiles { grid-template-columns: repeat(auto-fill, minmax(5.75rem, 1fr)); }
+
+.tile {
+  --tint: var(--brand, var(--vd-color-text-muted));
+  position: relative; display: grid; justify-items: center; align-content: start; gap: var(--vd-space-2);
+  padding: var(--vd-space-3) var(--vd-space-2); border-radius: var(--vd-radius-lg); text-align: center;
+  border: 1px solid transparent; background: var(--vd-color-surface-sunken);
+  transition: transform var(--vd-duration-base) var(--vd-ease-out), border-color var(--vd-duration-base) var(--vd-ease-out),
+    background-color var(--vd-duration-base) var(--vd-ease-out);
+  animation: pf-tile-in var(--vd-duration-slow) var(--vd-ease-out) both; animation-delay: calc(var(--i, 0) * 20ms);
+}
+@keyframes pf-tile-in { from { opacity: 0; transform: translateY(6px) scale(0.97); } }
+.tile__logo {
+  display: grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--vd-radius-md);
+  background: color-mix(in oklch, var(--tint) 14%, transparent);
+  color: color-mix(in oklch, var(--tint) 88%, var(--vd-color-text));
+  transition: transform var(--vd-duration-slow) var(--vd-ease-spring);
+}
+.tile__logo svg { inline-size: 1.375rem; block-size: 1.375rem; fill: currentColor; }
+.tile__logo vd-icon { inline-size: 1.25rem; block-size: 1.25rem; }
+.tile__mono { font-family: var(--vd-font-mono); font-weight: 700; font-size: var(--vd-text-sm); }
+.tile__name { font-size: var(--vd-text-xs); line-height: 1.3; color: var(--vd-color-text-muted); }
+
+.tile--core { border-color: color-mix(in oklch, var(--vd-color-action) 45%, transparent); }
+.tile--core::after { content: ''; position: absolute; inset-block-start: 6px; inset-inline-end: 6px; inline-size: 6px; block-size: 6px;
+  border-radius: 50%; background: var(--vd-color-action); }
+.tile--core .tile__name { color: var(--vd-color-text); font-weight: 600; }
+
+@media (hover: hover) {
+  .tile:hover { transform: translateY(-2px); border-color: color-mix(in oklch, var(--tint) 40%, transparent);
+    background: color-mix(in oklch, var(--tint) 8%, var(--vd-color-surface-sunken)); }
+  .tile:hover .tile__logo { transform: scale(1.1); }
+  .tile:hover .tile__name { color: var(--vd-color-text); }
+}
+
+/* Phones: three compact tiles per row keeps the section short. */
+@media (max-width: 40rem) {
+  .tiles, .group[data-group='backend'] .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--vd-space-1-5); }
+  .tile { padding: var(--vd-space-2) var(--vd-space-1); gap: var(--vd-space-1-5); }
+  .tile__logo { inline-size: 2rem; block-size: 2rem; }
+  .tile__logo svg { inline-size: 1.125rem; block-size: 1.125rem; }
+  .tile__name { font-size: 0.6875rem; overflow-wrap: anywhere; }
+}

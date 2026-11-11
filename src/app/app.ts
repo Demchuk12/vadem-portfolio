@@ -21,7 +21,6 @@ import {
 import { VdIcon } from '@vadem/ui/icon';
 import { VdSegment, VdSegmented } from '@vadem/ui/segmented';
 import { VdStat } from '@vadem/ui/stat';
-import { VdTab, VdTabList, VdTabPanel, VdTabs } from '@vadem/ui/tabs';
 import {
   VdTimeline,
   VdTimelineItem,
@@ -30,7 +29,8 @@ import {
 } from '@vadem/ui/timeline';
 import { PfLiveDemoEn, PfLiveDemoUk } from './live-demo';
 import { PfReveal } from './reveal';
-import { COPY, JOBS, type Lang, PROFILE, PROJECTS, STACK_GROUPS } from './data';
+import { PfTechDashboard } from './tech-dashboard';
+import { COPY, JOBS, type Lang, PROFILE, PROJECTS } from './data';
 
 type Theme = 'auto' | 'light' | 'dark';
 
@@ -56,6 +56,7 @@ function write(key: string, value: string): void {
     PfLiveDemoEn,
     PfLiveDemoUk,
     PfReveal,
+    PfTechDashboard,
     VdBadge,
     VdButton,
     VdCard,
@@ -67,10 +68,6 @@ function write(key: string, value: string): void {
     VdSegment,
     VdSegmented,
     VdStat,
-    VdTab,
-    VdTabList,
-    VdTabPanel,
-    VdTabs,
     VdTimeline,
     VdTimelineItem,
     VdTimelineTime,
@@ -84,7 +81,6 @@ export class App {
   private readonly doc = inject(DOCUMENT);
 
   protected readonly profile = PROFILE;
-  protected readonly groups = STACK_GROUPS;
   protected readonly projects = PROJECTS;
   protected readonly year = new Date().getFullYear();
 
@@ -92,7 +88,6 @@ export class App {
     read('pf-lang') === 'en' ? 'en' : read('pf-lang') === 'uk' ? 'uk' : this.detectLang(),
   );
   protected readonly theme = signal<Theme>(this.initialTheme());
-  protected readonly stackTab = signal<string>('frontend');
   /** Section currently in view, for the nav highlight. */
   protected readonly active = signal<string>('');
   /** Older jobs stay collapsed until asked for. */

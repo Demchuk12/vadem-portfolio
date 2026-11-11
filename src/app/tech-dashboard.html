@@ -1,0 +1,41 @@
+<div class="summary" pfReveal>
+  <div class="summary__core">
+    <span class="summary__label">{{ t().core }}</span>
+    <ul class="summary__chips">
+      @for (c of core; track c.name) {
+        <li vdBadge variant="accent">{{ c.name }}</li>
+      }
+    </ul>
+  </div>
+</div>
+
+<div class="bento">
+  @for (g of groups; track g.id; let gi = $index) {
+    <section vdCard class="group" [attr.data-group]="g.id" [pfReveal]="gi * 70" [attr.aria-labelledby]="'tg-' + g.id">
+      <header class="group__head">
+        <span class="group__icon" aria-hidden="true"><vd-icon [name]="g.icon" /></span>
+        <div>
+          <h3 class="group__title" [id]="'tg-' + g.id">{{ g.label[lang()] }}</h3>
+          <p class="group__hint">{{ g.hint[lang()] }}</p>
+        </div>
+        <span vdBadge class="group__count">{{ g.items.length }}</span>
+      </header>
+      <ul class="tiles">
+        @for (it of g.items; track it.name; let i = $index) {
+          <li class="tile" [class.tile--core]="it.core" [style.--brand]="it.brand" [style.--i]="i">
+            <span class="tile__logo" aria-hidden="true">
+              @if (it.logo) {
+                <svg viewBox="0 0 24 24"><path [attr.d]="it.logo.path" /></svg>
+              } @else if (it.icon) {
+                <vd-icon [name]="it.icon" />
+              } @else {
+                <span class="tile__mono">{{ it.mono }}</span>
+              }
+            </span>
+            <span class="tile__name">{{ it.name }}</span>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+</div>

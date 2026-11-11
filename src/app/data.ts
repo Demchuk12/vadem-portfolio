@@ -31,48 +31,12 @@ export const PROFILE = {
   telegram: 'https://t.me/inseyul',
   github: 'https://github.com/Demchuk12',
   linkedin: 'https://www.linkedin.com/in/vasyl-demchuk-152148255/',
+  cv: 'Vasyl_Demchuk_Full_Stack_Engineer_CV.pdf',
   title: {
     uk: 'Full Stack інженер',
     en: 'Full Stack Engineer',
   } satisfies L10n,
 };
-
-export const STACK_GROUPS: { id: string; label: L10n; items: string[] }[] = [
-  {
-    id: 'frontend',
-    label: { uk: 'Frontend', en: 'Frontend' },
-    items: [
-      'Angular 12–22', 'TypeScript', 'RxJS', 'Signals', 'NgRx', 'NGXS', 'Reactive Forms',
-      'Vue.js', 'Svelte', 'React', 'Tailwind CSS', 'SCSS', 'Angular Material', 'Highcharts',
-    ],
-  },
-  {
-    id: 'backend',
-    label: { uk: 'Backend і дані', en: 'Backend & data' },
-    items: ['.NET 10', 'C#', 'REST APIs', 'SignalR', 'Node.js', 'Express', 'PostgreSQL', 'TimescaleDB', 'Redis'],
-  },
-  {
-    id: 'arch',
-    label: { uk: 'Архітектура', en: 'Architecture' },
-    items: [
-      'Real-time data pipelines', 'IoT / PLC дані', 'Reusable component systems',
-      'State management', 'Performance optimization', 'Design systems',
-    ],
-  },
-  {
-    id: 'tools',
-    label: { uk: 'Інструменти й тести', en: 'Tools & testing' },
-    items: [
-      'Git / GitFlow', 'Docker', 'Jenkins', 'CI/CD', 'Postman', 'Swagger', 'Sentry',
-      'Jasmine', 'Karma', 'Cypress',
-    ],
-  },
-  {
-    id: 'ai',
-    label: { uk: 'AI у розробці', en: 'AI-assisted' },
-    items: ['Claude', 'Codex', 'LLM API integration', 'Refactoring', 'Debugging', 'Workflow automation'],
-  },
-];
 
 export const JOBS: Job[] = [
   {
@@ -254,6 +218,7 @@ export const COPY = {
       lead: 'Понад 5 років будую складні вебзастосунки: від CRM і банкінгу до моніторингу заводу в реальному часі. Сильна база в Angular і TypeScript, а останнім часом ще й .NET, PostgreSQL та SignalR.',
       cta: 'Написати мені',
       cv: 'Мої проєкти',
+      download: 'Завантажити CV',
     },
     stats: [
       { label: 'Років досвіду', value: '5+', caption: 'комерційна розробка' },
@@ -295,6 +260,7 @@ export const COPY = {
       lead: 'For 5+ years I have been building complex web applications, from CRM and banking to real-time factory monitoring. A strong Angular and TypeScript foundation, recently extended with .NET, PostgreSQL and SignalR.',
       cta: 'Get in touch',
       cv: 'See my projects',
+      download: 'Download CV',
     },
     stats: [
       { label: 'Years of experience', value: '5+', caption: 'commercial development' },

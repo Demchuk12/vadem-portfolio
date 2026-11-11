@@ -46,8 +46,8 @@
       <a vdButton variant="primary" size="lg" [href]="'mailto:' + profile.email">
         <vd-icon slot="start" name="mail" />{{ t().hero.cta }}
       </a>
-      <a vdButton size="lg" href="#projects">
-        {{ t().hero.cv }}<vd-icon slot="end" name="arrow-down" />
+      <a vdButton size="lg" [href]="profile.cv" download>
+        <vd-icon slot="start" name="download" />{{ t().hero.download }}
       </a>
       <span class="hero__social">
         <a vdButton variant="ghost" size="lg" [href]="profile.github" target="_blank" rel="noopener">GitHub</a>
@@ -76,22 +76,7 @@
       <h2 id="stack-h">{{ t().stackTitle }}</h2>
       <p>{{ t().stackLead }}</p>
     </header>
-    <vd-tabs pfReveal variant="pill" [(value)]="stackTab">
-      <div vdTabList [attr.aria-label]="t().stackTitle" class="stack__tabs">
-        @for (g of groups; track g.id) {
-          <button vdTab [value]="g.id">{{ tx(g.label) }}</button>
-        }
-      </div>
-      @for (g of groups; track g.id) {
-        <div vdTabPanel [value]="g.id">
-          <ul class="chips">
-            @for (item of g.items; track item; let i = $index) {
-              <li vdBadge variant="neutral" class="chip" [style.--i]="i">{{ item }}</li>
-            }
-          </ul>
-        </div>
-      }
-    </vd-tabs>
+    <pf-tech-dashboard [lang]="lang()" />
   </section>
 
   <section class="sec wrap" id="experience" aria-labelledby="exp-h">
@@ -195,6 +180,7 @@
         <a vdButton variant="primary" size="lg" [href]="'mailto:' + profile.email">
           <vd-icon slot="start" name="mail" />{{ profile.email }}
         </a>
+        <a vdButton size="lg" [href]="profile.cv" download><vd-icon slot="start" name="download" />{{ t().hero.download }}</a>
         <a vdButton size="lg" [href]="profile.telegram" target="_blank" rel="noopener">Telegram</a>
         <a vdButton size="lg" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
         <a vdButton size="lg" [href]="profile.github" target="_blank" rel="noopener">GitHub</a>

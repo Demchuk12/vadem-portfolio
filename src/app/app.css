@@ -33,7 +33,6 @@
 .sec__head h2, .contact h2 { margin: 0 0 var(--vd-space-2); font-size: clamp(1.5rem, 4vw, 2.25rem); letter-spacing: -0.02em; }
 .sec__head p { margin: 0; color: var(--vd-color-text-muted); }
 
-.stack__tabs { flex-wrap: wrap; }
 .chips { list-style: none; margin: var(--vd-space-5) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--vd-space-2); }
 .chips--tight { margin-block-start: var(--vd-space-3); }
 .chip { font-size: var(--vd-text-sm); padding-block: var(--vd-space-2); padding-inline: var(--vd-space-3); }
