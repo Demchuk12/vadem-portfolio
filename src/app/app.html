@@ -9,7 +9,7 @@
       </span>
       <span class="brand__name">Vasyl Demchuk</span>
     </a>
-    <nav class="nav" [attr.aria-label]="'Sections'">
+    <nav class="nav" [attr.aria-label]="t().navLabel">
       <a href="#stack">{{ t().nav.stack }}</a>
       <a href="#experience">{{ t().nav.experience }}</a>
       <a href="#projects">{{ t().nav.projects }}</a>
@@ -52,6 +52,9 @@
       <a vdButton variant="ghost" size="lg" [href]="profile.github" target="_blank" rel="noopener">
         <vd-icon slot="start" name="git-branch" />GitHub
       </a>
+      <a vdButton variant="ghost" size="lg" [href]="profile.linkedin" target="_blank" rel="noopener">
+        <vd-icon slot="start" name="user" />LinkedIn
+      </a>
     </div>
 
     <dl class="stats">
@@ -91,7 +94,7 @@
     </header>
     <ol vdTimeline [label]="t().expLabel">
       @for (j of jobs(); track j.company) {
-        <li vdTimelineItem [status]="j.current ? 'success' : 'neutral'" [statusLabel]="j.productText">
+        <li vdTimelineItem [status]="j.current ? 'success' : 'neutral'" [statusLabel]="j.current ? t().now + ' · ' + j.productText : j.productText">
           <time vdTimelineTime [attr.datetime]="j.datetime">{{ j.periodText }}</time>
           <h3 vdTimelineTitle>{{ j.roleText }} · <span class="co">{{ j.company }}</span></h3>
           <ul class="points">

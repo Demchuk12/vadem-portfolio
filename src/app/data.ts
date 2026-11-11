@@ -242,6 +242,7 @@ export const PROJECTS: Project[] = [
 
 export const COPY = {
   uk: {
+    navLabel: 'Розділи сторінки',
     nav: { about: 'Про мене', stack: 'Стек', experience: 'Досвід', projects: 'Проєкти', contact: 'Контакти' },
     hero: {
       eyebrow: 'Україна · Remote',
@@ -279,6 +280,7 @@ export const COPY = {
     skip: 'Перейти до змісту',
   },
   en: {
+    navLabel: 'Page sections',
     nav: { about: 'About', stack: 'Stack', experience: 'Experience', projects: 'Projects', contact: 'Contact' },
     hero: {
       eyebrow: 'Ukraine · Remote',
