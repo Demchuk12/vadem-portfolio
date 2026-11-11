@@ -25,6 +25,7 @@ import {
   VdTimelineTime,
   VdTimelineTitle,
 } from '@vadem/ui/timeline';
+import { PfCerts } from './certs';
 import { PfLiveDemoEn, PfLiveDemoUk } from './live-demo';
 import { PfReveal } from './reveal';
 import { PfTechDashboard } from './tech-dashboard';
@@ -51,6 +52,7 @@ function write(key: string, value: string): void {
 @Component({
   selector: 'pf-root',
   imports: [
+    PfCerts,
     PfLiveDemoEn,
     PfLiveDemoUk,
     PfReveal,

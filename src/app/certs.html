@@ -1,0 +1,42 @@
+<header class="head" pfReveal>
+  <div>
+    <h2 id="certs-h">{{ t().title }}</h2>
+    <p>{{ t().lead }}</p>
+  </div>
+  <div class="head__nav">
+    <button vdButton iconOnly variant="secondary" [aria-label]="t().prev" [disabled]="atStart()" (click)="scroll(-1)">
+      <vd-icon name="chevron-left" />
+    </button>
+    <button vdButton iconOnly variant="secondary" [aria-label]="t().next" [disabled]="atEnd()" (click)="scroll(1)">
+      <vd-icon name="chevron-right" />
+    </button>
+  </div>
+</header>
+
+<ul class="track" #track role="list" [attr.aria-label]="t().list" tabindex="0" [class.track--start]="atStart()" [class.track--end]="atEnd()">
+  @for (c of certs; track c.credentialId; let i = $index) {
+    <li class="cert" [style.--brand]="c.brand" [style.--brand-fg]="c.fg" [pfReveal]="i * 60">
+      <div class="cert__top">
+        <span class="cert__logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path [attr.d]="c.logo.path" /></svg>
+        </span>
+        <span class="cert__issuer">{{ c.issuer }}</span>
+        <time class="cert__date" [attr.datetime]="c.issued">{{ t().month }}</time>
+      </div>
+      @if (c.series) {
+        <span class="cert__series">{{ c.series }}</span>
+      }
+      <h3 class="cert__title">{{ c.title }}</h3>
+      <ul class="cert__skills">
+        @for (s of c.skills; track s) {
+          <li vdBadge>{{ s }}</li>
+        }
+      </ul>
+      <span class="cert__id">{{ t().id }} · {{ c.credentialId }}</span>
+    </li>
+  }
+</ul>
+
+<a class="all" [href]="allUrl()" target="_blank" rel="noopener">
+  {{ t().all }}<vd-icon name="external-link" />
+</a>

@@ -1,0 +1,52 @@
+:host { display: grid; gap: var(--vd-space-5); }
+
+.head { display: flex; align-items: end; justify-content: space-between; gap: var(--vd-space-4); }
+.head h2 { margin: 0 0 var(--vd-space-2); font-size: clamp(1.5rem, 4vw, 2.25rem); letter-spacing: -0.02em; }
+.head p { margin: 0; color: var(--vd-color-text-muted); }
+.head__nav { display: flex; gap: var(--vd-space-2); flex: none; }
+@media (pointer: coarse) { .head__nav { display: none; } }
+
+/* Scroll-snap strip; edges fade to hint there is more. */
+.track {
+  list-style: none; margin: 0; padding: var(--vd-space-1) var(--vd-space-1) var(--vd-space-3);
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(16.5rem, calc((100% - 3 * var(--vd-space-4)) / 3.4));
+  gap: var(--vd-space-4); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--vd-space-1);
+  overscroll-behavior-x: contain; scrollbar-width: none;
+  --fade-s: 2.5rem; --fade-e: 2.5rem;
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-s), #000 calc(100% - var(--fade-e)), transparent);
+}
+.track::-webkit-scrollbar { display: none; }
+.track--start { --fade-s: 0px; }
+.track--end { --fade-e: 0px; }
+.track:focus-visible { outline: 2px solid var(--vd-color-focus); outline-offset: 2px; border-radius: var(--vd-radius-surface); }
+@media (max-width: 40rem) { .track { grid-auto-columns: 82%; } }
+
+.cert {
+  scroll-snap-align: start; position: relative; overflow: hidden;
+  display: grid; align-content: start; gap: var(--vd-space-2); padding: var(--vd-space-5);
+  border: 1px solid var(--vd-color-border); border-radius: var(--vd-radius-surface); background: var(--vd-color-surface);
+  transition: transform var(--vd-duration-base) var(--vd-ease-out), border-color var(--vd-duration-base) var(--vd-ease-out);
+}
+/* Brand glow in the corner. */
+.cert::before { content: ''; position: absolute; inset: -40% -30% auto auto; inline-size: 12rem; block-size: 12rem; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in oklch, var(--brand) 18%, transparent), transparent); }
+@media (hover: hover) {
+  .cert:hover { transform: translateY(-3px); border-color: color-mix(in oklch, var(--brand) 45%, var(--vd-color-border)); }
+}
+
+.cert__top { display: flex; align-items: center; gap: var(--vd-space-2); margin-block-end: var(--vd-space-2); }
+.cert__logo { display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: var(--vd-radius-md);
+  background: color-mix(in oklch, var(--brand) 16%, var(--vd-color-surface-raised)); color: var(--brand-fg, var(--vd-color-text)); }
+.cert__logo svg { inline-size: 1.25rem; block-size: 1.25rem; fill: currentColor; }
+.cert__issuer { font-weight: 600; font-size: var(--vd-text-sm); }
+.cert__date { margin-inline-start: auto; font-family: var(--vd-font-mono); font-size: var(--vd-text-xs); color: var(--vd-color-text-subtle); }
+.cert__series { font-family: var(--vd-font-mono); font-size: var(--vd-text-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--vd-color-text-accent); }
+.cert__title { margin: 0; font-size: var(--vd-text-lg); line-height: 1.3; }
+.cert__skills { list-style: none; margin: var(--vd-space-1) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--vd-space-1-5); }
+.cert__id { margin-block-start: var(--vd-space-2); font-family: var(--vd-font-mono); font-size: 0.6875rem; color: var(--vd-color-text-subtle);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.all { justify-self: start; display: inline-flex; align-items: center; gap: var(--vd-space-1-5); color: var(--vd-color-text-accent);
+  font-size: var(--vd-text-sm); text-decoration: none; }
+.all vd-icon { inline-size: 0.875rem; block-size: 0.875rem; }
+.all:hover { text-decoration: underline; text-underline-offset: 3px; }
