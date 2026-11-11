@@ -70,7 +70,7 @@ export const STACK_GROUPS: { id: string; label: L10n; items: string[] }[] = [
   {
     id: 'ai',
     label: { uk: 'AI у розробці', en: 'AI-assisted' },
-    items: ['Claude', 'Codex', 'Refactoring', 'Debugging', 'Workflow automation'],
+    items: ['Claude', 'Codex', 'LLM API integration', 'Refactoring', 'Debugging', 'Workflow automation'],
   },
 ];
 
@@ -215,13 +215,13 @@ export const PROJECTS: Project[] = [
     id: 'vadem-quiz',
     image: 'projects/vadem-quiz.jpg',
     name: 'Vadem Quiz',
-    badge: { uk: 'Realtime · PWA', en: 'Realtime · PWA' },
-    tagline: { uk: 'Живий квіз для друзів', en: 'Live quiz board game' },
+    badge: { uk: 'AI · Realtime · PWA', en: 'AI · Realtime · PWA' },
+    tagline: { uk: 'Живий квіз для друзів з AI-генерацією', en: 'Live quiz board game with AI generation' },
     description: {
-      uk: 'Ведучий керує грою, гравці відповідають з телефонів кнопкою «хто перший». Angular 22, @vadem/ui і Supabase (Postgres, Realtime, Storage); уся логіка правил у функціях БД.',
-      en: 'A host runs the game, players answer from phones with a first-press-wins buzzer. Angular 22, @vadem/ui and Supabase (Postgres, Realtime, Storage); all rules live in database functions.',
+      uk: 'AI пише раунди за темою чи брифом, змінює питання за інструкцією і підбирає фото з Wikipedia. Працює з Gemini безкоштовно або з власним ключем ChatGPT, Claude, Groq, Mistral чи OpenRouter. Гравці відповідають з телефонів кнопкою «хто перший»; Angular 22, @vadem/ui і Supabase (Realtime, Edge Functions).',
+      en: 'AI writes rounds from a topic or brief, edits questions by instruction and picks photos from Wikipedia. Runs on Gemini for free or on your own ChatGPT, Claude, Groq, Mistral or OpenRouter key. Players answer from phones with a first-press-wins buzzer; Angular 22, @vadem/ui and Supabase (Realtime, Edge Functions).',
     },
-    stack: ['Angular 22', '@vadem/ui', 'Supabase', 'Realtime', 'PWA'],
+    stack: ['Angular 22', '@vadem/ui', 'Supabase', 'Edge Functions', 'LLM APIs', 'Realtime', 'PWA'],
     links: [
       { label: { uk: 'Відкрити', en: 'Open app' }, href: 'https://vadem-quiz.vercel.app', primary: true },
       { label: { uk: 'GitHub', en: 'GitHub' }, href: 'https://github.com/Demchuk12/vadem-quiz' },
