@@ -4,6 +4,8 @@ Personal site of **Vasyl Demchuk**, Frontend / Full Stack Engineer (Angular, Typ
 PostgreSQL, SignalR). Built with Angular 22 and my own component library,
 [`@vadem/ui`](https://www.npmjs.com/package/@vadem/ui).
 
+**Live:** [vadem-portfolio.vercel.app](https://vadem-portfolio.vercel.app) · [українською](https://vadem-portfolio.vercel.app/uk)
+
 ![Social card](public/og.png)
 
 ## What's inside
@@ -17,6 +19,8 @@ PostgreSQL, SignalR). Built with Angular 22 and my own component library,
   tree-shaken to the icons in use.
 - **Project case studies** with browser and phone mockups, WebP screenshots with `srcset`.
 - **Certifications strip**: scroll-snap, arrow buttons, keyboard and swipe; nothing auto-plays.
+- **Measured in production** (Pixel 7, slow 4G, 4× CPU throttling): FCP 0.3–0.6 s, LCP 1.0–1.9 s,
+  CLS ≤ 0.006, ~310 KB transferred.
 - **Accessibility**: axe-clean (WCAG 2.2 AA) in dark and light themes, keyboard navigation,
   skip link, `prefers-reduced-motion` respected everywhere.
 
