@@ -36,6 +36,11 @@
       Vasyl Demchuk
       <span class="hero__role">{{ tx(profile.title) }}</span>
     </h1>
+    <ul class="hero__facts">
+      @for (f of t().hero.facts; track f) {
+        <li>{{ f }}</li>
+      }
+    </ul>
     <p class="hero__lead">{{ t().hero.lead }}</p>
     <div class="hero__tags">
       @for (s of ['.NET', 'Angular', 'TypeScript', 'PostgreSQL', 'SignalR']; track s) {
@@ -71,14 +76,6 @@
     </dl>
   </section>
 
-  <section class="sec wrap" id="stack" aria-labelledby="stack-h">
-    <header class="sec__head" pfReveal>
-      <h2 id="stack-h">{{ t().stackTitle }}</h2>
-      <p>{{ t().stackLead }}</p>
-    </header>
-    <pf-tech-dashboard [lang]="lang()" />
-  </section>
-
   <section class="sec wrap" id="experience" aria-labelledby="exp-h">
     <header class="sec__head" pfReveal>
       <h2 id="exp-h">{{ t().expTitle }}</h2>
@@ -110,6 +107,14 @@
         </button>
       </div>
     }
+  </section>
+
+  <section class="sec wrap" id="stack" aria-labelledby="stack-h">
+    <header class="sec__head" pfReveal>
+      <h2 id="stack-h">{{ t().stackTitle }}</h2>
+      <p>{{ t().stackLead }}</p>
+    </header>
+    <pf-tech-dashboard [lang]="lang()" />
   </section>
 
   <section class="sec wrap" id="projects" aria-labelledby="proj-h">
@@ -205,6 +210,8 @@
         <a vdButton variant="primary" size="lg" [href]="'mailto:' + profile.email">
           <vd-icon slot="start" name="mail" />{{ profile.email }}
         </a>
+        <vd-copy-button iconOnly size="lg" [value]="profile.email" [label]="t().copyEmail" [copiedLabel]="t().copied"
+                        [copyingLabel]="t().copying" [errorLabel]="t().copyError" [errorMessage]="t().copyErrorMsg" />
         <a vdButton size="lg" [href]="profile.cv" download><vd-icon slot="start" name="download" />{{ t().hero.download }}</a>
         <a vdButton size="lg" [href]="profile.telegram" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="telegram" />Telegram</a>
         <a vdButton size="lg" [href]="profile.linkedin" target="_blank" rel="noopener"><pf-brand-icon slot="start" name="linkedin" />LinkedIn</a>
@@ -214,13 +221,17 @@
   </section>
 </main>
 
-<nav class="tabbar" [attr.aria-label]="t().navLabel">
+<nav class="tabbar" [class.tabbar--shown]="pastHero()" [attr.aria-label]="t().navLabel">
   @for (s of sections; track s.id) {
     <a class="tabbar__item" [href]="'#' + s.id" [attr.aria-current]="active() === s.id ? 'true' : null">
       <vd-icon [name]="s.icon" />
       <span>{{ t().nav[s.id] }}</span>
     </a>
   }
+  <a class="tabbar__item" [href]="profile.cv" download>
+    <vd-icon name="download" />
+    <span>{{ t().cvShort }}</span>
+  </a>
 </nav>
 
 <footer class="foot wrap">

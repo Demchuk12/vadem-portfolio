@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { VdBadge } from '@vadem/ui/badge';
 import { VdButton } from '@vadem/ui/button';
+import { VdCopyButton } from '@vadem/ui/copy-button';
 import {
   VdCard,
   VdCardHeader,
@@ -61,6 +62,7 @@ function write(key: string, value: string): void {
     PfTechDashboard,
     VdBadge,
     VdButton,
+    VdCopyButton,
     VdCard,
     VdCardHeader,
     VdCardTitle,
@@ -91,12 +93,14 @@ export class App {
   protected readonly theme = signal<Theme>(this.initialTheme());
   /** Section currently in view, for the nav highlight. */
   protected readonly active = signal<string>('');
+  /** The mobile tab bar stays out of the way while the hero (with its own CTAs) is on screen. */
+  protected readonly pastHero = computed(() => this.active() !== '' && this.active() !== 'top');
   /** Older jobs stay collapsed until asked for. */
   protected readonly showAllJobs = signal(false);
   protected readonly visibleJobsCount = 3;
   protected readonly sections = [
-    { id: 'stack', icon: 'layout-dashboard' },
     { id: 'experience', icon: 'activity' },
+    { id: 'stack', icon: 'layout-dashboard' },
     { id: 'projects', icon: 'folder' },
     { id: 'contact', icon: 'mail' },
   ] as const;

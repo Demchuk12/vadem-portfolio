@@ -101,11 +101,13 @@
 @media (max-width: 52rem) {
   .tabbar {
     position: fixed; inset-inline: var(--vd-space-3); inset-block-end: calc(var(--vd-space-3) + env(safe-area-inset-bottom));
-    z-index: 15; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--vd-space-1); padding: var(--vd-space-1);
+    z-index: 15; display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--vd-space-1); padding: var(--vd-space-1);
     border: 1px solid var(--vd-color-border); border-radius: var(--vd-radius-2xl);
     background: var(--vd-color-surface-glass); backdrop-filter: blur(16px); box-shadow: var(--vd-shadow-lg);
-    animation: pf-rise calc(var(--vd-duration-slow) * 2) var(--vd-ease-out) 400ms both;
+    transform: translateY(calc(100% + var(--vd-space-6))); opacity: 0; pointer-events: none;
+    transition: transform var(--vd-duration-slow) var(--vd-ease-out), opacity var(--vd-duration-slow) var(--vd-ease-out);
   }
+  .tabbar--shown { transform: none; opacity: 1; pointer-events: auto; }
   .tabbar__item {
     display: grid; justify-items: center; gap: 2px; padding-block: var(--vd-space-2); min-block-size: 3rem;
     border-radius: var(--vd-radius-xl); color: var(--vd-color-text-muted); text-decoration: none; font-size: 0.6875rem;
@@ -176,3 +178,8 @@
 .case__features vd-icon { flex: none; inline-size: 1.125rem; block-size: 1.125rem; margin-block-start: 0.15em; color: var(--vd-color-text-accent); }
 .case__body .chips { margin-block-start: 0; }
 .case__links { display: flex; flex-wrap: wrap; gap: var(--vd-space-2); margin-block-start: var(--vd-space-1); }
+
+.hero__facts { list-style: none; margin: calc(var(--vd-space-2) * -1) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--vd-space-1) var(--vd-space-3);
+  color: var(--vd-color-text-muted); font-size: var(--vd-text-sm); }
+.hero__facts li { display: inline-flex; align-items: center; gap: var(--vd-space-2); }
+.hero__facts li::before { content: ''; inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--vd-color-text-accent); opacity: 0.7; }
